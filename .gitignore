@@ -1,0 +1,6 @@
+#Esto sirve para ignorar todas las imagenes .png
+#*.png
+#Esto sirve para ocultar una carpeta
+oculto/
+#Esto sirve para ignorar un archivo en especifico
+hola.txt

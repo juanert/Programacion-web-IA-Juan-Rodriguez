@@ -1,0 +1,98 @@
+<!--Esto es un parrafo-->
+<p id="parrafo">Esta es una canción</p>
+
+<!--
+  Titulares
+  La h viene de la palabra header(Titular)
+  h1: titular mas importante, normalmente solo se utiliza uno por pagina web
+  h2:
+  h3
+  h4
+  h5
+  h6
+  Entre mas grande el numero, menor tamaño e importancia.
+-->
+<h1>Este es el titular más importante</h1>
+<h2>Este es un titular</h2>
+<h3>Este es un sub-titulo</h3>
+<h4>Titular menos relevante</h4>
+<h5>Titular aun menos relevante</h5>
+<h6>El titular menos relevante</h6>
+
+<!--Botones-->
+<button>Presioname</button>
+
+<!--
+  Enlace
+  la etiqueta A funciona como lo que conocemos con un enlace
+  viene de la palabra Anchor (Ancla)
+  Como dato curioso nos puede llevar a sitios web fuera de nuestro sitio web y tambien
+  a parte especificas de nuestra pagina web
+  Tiene distintas propiedades
+  href (Hacia donde nos llevara)
+  target (Como se abrira el enlace)
+  target tiene los posibles valores
+  - _blank: esto abrira la pagina en una nueva pestaña
+  - _self: este es el valor por default de todo link, lo que hace es abrirse en la misma pestaña
+-->
+<a href="https://youtube.com" target="_blank">Ir a Youtube</a>
+<a href="#parrafo">Ir al parrafo</a>
+
+<!--
+  Las listas en HTML, hay dos tipos de listas.
+  Las listas organizadas, estan son listas numericas con un orden logico
+  Son utilizadas para instrucciones
+  se hacen con la etiqueta <ol></ol>
+  que significan order list.
+
+  Dentro de las listas para enumerar cada elemento debes de utilizar la etiqueta
+  <li></li> significa list element
+-->
+<h2>Tutorial para tener una vida sana</h2>
+<ol>
+  <li>Comer bien</li>
+  <li>Dormir lo suficiente</li>
+  <li>Ser feliz</li>
+</ol>
+
+<!--
+  Lista desorganizada
+  En esta lista el orden de los elementos no es relevante,
+  sirve para hacer cosas como una lista de compra
+  se utiliza la etiqueta <ul></ul> que significa ulisted list
+  (lista no listada o lista desorganizada)
+-->
+<h2>Lista de compras</h2>
+<ul>
+  <li>Pan</li>
+  <li>Jamon</li>
+  <li>Queso</li>
+</ul>
+
+<!--
+  Para colocar imagenes de forma local o de la web se utiliza
+  la etiqueta <img /> esta es una etiqueta autoconclusiva
+-->
+
+<img src="./zufoto_logo_transp_yellow.png" alt="logo">
+
+<img src="https://imagenes.elpais.com/resizer/v2/4GFYMYJE5ZDWXGOEOYWI7XSIAQ.webp?auth=939bbdc075663f2fb475da43632698c9eb82ad785bba2edc8c09a60e67f7fc6e&width=1000" alt="perrito">
+
+<!--
+  Video
+  La etiqueta video solo sirve para producir video de manera local
+-->
+<video src="./datos-reel-1.mp4" controls></video>
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/pPlhzOURh9U?si=-okYR8itx6q8tEYV" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+
+<!--
+  La etiqueta div
+  Significa division, cada etiqueta en HTML funciona como una caja (TODAS)
+  la etiqueta div esta hecha para contener elementos dentro de ella
+  (es una forma de agrupar elementos)
+-->
+<div style="background-color: brown;">
+  <h2>El siguiente boton es increible</h2>
+  <button>Boton increible</button>
+</div>
