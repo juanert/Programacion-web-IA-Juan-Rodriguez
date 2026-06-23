@@ -1,0 +1,43 @@
+/*Seleccionando una etiqueta HTML*/
+p {
+  /*Color de fondo*/
+  background-color: rgb(30, 155, 209);
+  /* Color de texto */
+  color: blanchedalmond;
+  /* Tamaño de texto */
+  font-size: 24px;
+  /*  Familia tipografica */
+  font-family: Arial, Helvetica, sans-serif;
+  /* Ancho */
+  width: 50%;
+  /* alto */
+  height: 100px;
+  border: 5px groove rgb(232, 158, 10);
+}
+/*Seleccionando una clase*/
+.parrafo-personalizado {
+  background-color: forestgreen;
+  width: 80%;
+}
+/*Seleccionando un ID*/
+#texto-especial {
+  background-color: beige;
+}
+.texto-azul {
+  background-color: blue;
+}
+
+/*
+  Crea un div que contenga otro div.
+
+  Crea un titular que tenga 64px de tama;o, que sea de
+  tipografia arial, que tenga un color de letra azul
+  color de fondo rojo
+
+  Debajo de este crea un boton con un borde naranja
+  , fondo azul con letras blancas, y un tama;o de letra
+  de 24px
+
+  Muy importante, el CSS debe de estar en un archivo llamado
+  ejercicio.css
+*/
