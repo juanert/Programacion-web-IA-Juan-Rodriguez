@@ -1,27 +1,51 @@
 .grid-container {
+    /* Display nos permite modificar como
+    se muestran los contenidos */
     display: grid;
-    /* Grid-template columns sirve para
-        crear las columnas de una grilla
-    */
-    /* grid-template-columns: 50px 50px 50px; */
-    /* grid-template-columns: repeat(3, 50px); */
-    grid-template-columns: repeat(auto-fit, minmax(50px, 1fr));
-    /* Grid-template-rows sirve para crear las filas de una grilla */
-    grid-template-rows: auto;
 
-    /* grid nos sirve para generar espaciados  puede ser general 1 valor
+    /* grid-template-columns sirve para crear las columnas de una grilla */
+
+    /* grid-template-columns: 1fr 1fr 1fr; */
+
+    grid-template-columns: repeat(3,1fr);
+    /* repeat() no sirve para crear una serie de columnas con los mismos valores */
+
+    /* grid-template-rows: nos sirve para crear las filas de una grilla */
+
+    grid-template-rows: 1fr 1fr 1fr;
+
+    /* grid-template-rows: repeat(3, minmax(100px, 1fr)) */
+
+    /* gap: nos sirve para crear espacio entre las filas y columnas
     
-    y 2 valores, el primero es para arriba y abajo y el segundo es para izquierda y derecha
+    si utilizo un solo valor, este se aplicara tanto a las filas como a las columnas, si utilizo dos valores, el primero se aplicara a las filas y el segundo a las columnas
     */
-    gap: 10px 50px;
+
+    gap: 10px 20px;
+
+    /* Podemos alinear los elementos de una cuadricula (grila) */
+
+    /* align items nos permite alinear los elementos verticalmente */
+    align-items: center;
+
+    /* justify items nos permite alinear los elementos horizontalmente */
+    justify-items: center;
 }
 
-.grid-item.destacado {
-    /* grid-column sirve para especificar en qué columna se coloca un elemento */
- grid-column: 1 / 3;
+.destacado {
+    /* grid-column: nos sirve para modificar el tamaño de una columna */
+
+    grid-column: 1 / 4;
+
+    /* grid-row: nos sirve para modificar el tamaño de una fila */
+
+    grid-row: 1 / 3;
 }
 
-.grid-item.large {
-    /* grid-row sirve para especificar en qué fila se coloca un elemento */
-    grid-row: 2 / 4;
+.grid-item{
+    /* si coloco un solo valor, aplicara el valor para todos los vertices
+    
+    si coloco 2 valores los primeros valores se aplicaran a los vertices superior izquierdo y el segundo valor a los vertices inferior derecho
+    */
+    padding: 10px 30px 50px 70px;
 }
