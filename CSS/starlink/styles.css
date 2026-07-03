@@ -1,0 +1,100 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap");
+
+/*
+  ======VARIABLES======
+*/
+:root {
+  /*
+    Las variables son peque;os contenedores de informacion que puedes utilizar
+    para reutilizar un estilo declarandolo una sola vez y utilizar ese estilo por toda
+    la pagina
+  */
+  --text-color-main: white;
+  --size-titles: 64px;
+  --size-subtitles: 24px;
+  --size-highlights-paragraphs: 19px;
+  --size-paragraphs: 14px;
+  --gap-standard: 12px;
+  --padding-standard: 32px;
+  --color-button: #40444f60;
+}
+
+/*
+  ======GENERALES======
+*/
+* {
+  margin: 0;
+  padding: 0;
+  font-family: "Roboto", sans-serif;
+  color: var(--text-color-main);
+}
+
+body {
+  background-color: black;
+}
+
+a {
+  text-decoration: none;
+}
+
+button{
+  border: none;
+}
+
+/*
+  ======REUTILIZABLES======
+*/
+.row {
+  display: flex;
+}
+
+.column {
+  display: flex;
+  flex-direction: column;
+}
+
+.flex-main-space-between {
+  justify-content: space-between;
+}
+
+.flex-secondary-center {
+  align-items: center;
+}
+
+.gap-standard {
+  gap: var(--gap-standard);
+}
+
+.padding-standard {
+  padding: var(--padding-standard);
+}
+
+.transparent{
+  background-color: transparent;
+}
+
+/*
+  ======ESPECIFICOS======
+*/
+
+.circular-button {
+  border-radius: 100%;
+  padding: 8px;
+  background-color: var(--color-button);
+}
+
+.button-inactive{
+  padding: 2px 8px;
+}
+
+.button-active{
+  padding: 2px 6px;
+  background-color: rgba(199, 199, 199, 0.753);
+  border-radius: 8px;
+}
+
+.buttons-menu{
+  background-color: rgba(128, 128, 128, 0.737);
+  padding: 1px;
+  border-radius: 8px;
+}
