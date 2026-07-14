@@ -1,0 +1,190 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Traki</title>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.3.0/js/all.min.js"
+      integrity="sha512-4dRoOomu6cU3VKBvnI1kykyZOqeQMAzo0KDfzQmd99ls4/uckwtxwHUedg/Z7n4lB4mwwWL3dcZW9ZlI3j7dAA=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap");
+      * {
+        margin: 0;
+        padding: 0;
+        font-family: "Inter", sans-serif;
+      }
+
+      nav {
+        display: flex;
+        flex-direction: column;
+        padding: 8px 16px;
+        gap: 24px;
+      }
+
+      .links {
+        display: none;
+      }
+
+      .principal {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .principal .logo {
+        width: 170px;
+      }
+
+      .principal > div {
+        display: flex;
+        gap: 20px;
+        align-items: center;
+      }
+
+      .principal .central {
+        display: none;
+      }
+
+      .buscador {
+        border-radius: 25px;
+        padding: 12px 0 12px 35px;
+        border: none;
+        background-color: #f3f4f6;
+        width: 100%;
+      }
+
+      .locacion {
+        display: flex;
+        gap: 10px;
+        padding: 5px 12px;
+        border-radius: 8px;
+        border: none;
+        background-color: #f3f4f6;
+        font-weight: 600;
+      }
+
+      .usuario {
+        display: none;
+      }
+
+      .carrito {
+        display: none;
+      }
+
+      .complementaria {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 12px;
+      }
+
+      .complementaria > .izquierda {
+        display: none;
+      }
+
+      .locacion-complementaria {
+        display: flex;
+        gap: 10px;
+        padding: 5px 12px;
+        border-radius: 8px;
+        border: none;
+        background-color: #f3f4f6;
+        font-weight: 600;
+      }
+
+      @media only screen and (min-width: 992px) {
+        .central {
+          display: flex;
+          flex: 1;
+          padding: 0 100px;
+        }
+        .usuario {
+          display: flex;
+          gap: 8px;
+          align-items: center;
+          font-weight: 600;
+        }
+        .carrito {
+          display: block;
+        }
+        .links {
+          display: flex;
+          gap: 12px;
+          color: rgba(101, 101, 101, 0.833);
+          font-size: 12px;
+        }
+        nav {
+          padding: 8px 80px;
+        }
+        .complementaria > .izquierda {
+          display: flex;
+          align-items: center;
+          font-size: 12px;
+          font-weight: 800;
+          gap: 12px;
+          color: rgb(81, 81, 81);
+        }
+        .locacion-complementaria {
+          display: none;
+        }
+      }
+      
+    </style>
+  </head>
+  <body>
+    <header>
+      <nav>
+        <div class="links">
+          <p>Nosotros</p>
+          <p>Empleos</p>
+          <p>Sucursales</p>
+          <p>Fundación Traki</p>
+          <p>Banca amiga</p>
+        </div>
+        <div class="principal">
+          <div>
+            <img src="./logo.svg" class="logo" alt="logo" />
+          </div>
+          <div class="central">
+            <input
+              type="text"
+              class="buscador"
+              placeholder="Busca aquí tus productos..."
+            />
+            <button class="locacion">
+              <i class="fa-solid fa-location-dot"></i>
+              <p>GUACARA</p>
+            </button>
+          </div>
+          <div>
+            <i class="fa-regular fa-heart"></i>
+            <img width="45px" src="./giftcard.svg" alt="giftcard" />
+            <div class="usuario">
+              <i class="fa-regular fa-user"></i>
+              <p>Login / Registrarse</p>
+            </div>
+            <i class="fa-solid fa-cart-shopping carrito"></i>
+          </div>
+        </div>
+        <div class="complementaria">
+          <div class="izquierda">
+            <i class="fa-solid fa-bars"></i>
+            <p>EXPLORAR CATEGORIAS</p>
+          </div>
+          <button class="locacion-complementaria">
+            <i class="fa-solid fa-location-dot"></i>
+            <p>GUACARA</p>
+          </button>
+          <select name="" id="">
+            <option value=""><label for="">Ref</label> Dólar USD</option>
+            <option value=""><label for="">Bs</label> Bolívares</option>
+          </select>
+        </div>
+      </nav>
+    </header>
+  </body>
+</html>
