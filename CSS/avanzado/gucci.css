@@ -6,13 +6,21 @@
 header {
   position: relative;
   min-height: 300px;
-  height: 80vh;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 video {
   position: absolute;
   z-index: -1;
+  top: 0;
+  left: 0;
+  min-height: 300px;
+  height: 100vh;
   width: 100%;
+  object-fit: cover;
 }
 
 svg {
@@ -29,9 +37,12 @@ nav {
 
 nav > div {
   display: flex;
-  justify-content: end;
   align-items: center;
   gap: 12px;
+}
+
+.derecha {
+  justify-content: end;
 }
 
 .responsive {
@@ -44,6 +55,50 @@ nav > div {
 
 .video-telefono {
   display: block;
+}
+
+.header-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: end;
+  align-items: center;
+  gap: 25px;
+  padding: 0 25px 80px 25px;
+}
+
+.header-content > h2 {
+  color: white;
+  font-size: 20px;
+  font-weight: 400;
+}
+
+.header-content > button {
+  background-color: white;
+  color: black;
+  font-weight: 600;
+  font-size: 12px;
+  padding: 10px 18px;
+  border: none;
+  border-radius: 4px;
+  letter-spacing: 1px;
+}
+
+.products {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.products > div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  font-size: 15px;
+  font-weight: 400;
+}
+
+.products > div > img{
+  width: 100%;
 }
 
 @media only screen and (min-width: 768px) {
@@ -62,6 +117,13 @@ nav > div {
     display: block;
   }
   .video-telefono {
-    display: nones;
+    display: none;
+  }
+  .derecha {
+    justify-content: center;
+  }
+  .products {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
   }
 }
