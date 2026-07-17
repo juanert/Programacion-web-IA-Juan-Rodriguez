@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Mona+Sans:ital,wght@0,200..900;1,200..900&display=swap");
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Mona Sans", sans-serif;
+      }
+
+      body {
+        background-color: #010409;
+      }
+      button {
+        background-color: transparent;
+        border: 1px solid #f6f6f65f;
+        border-radius: 8px;
+        padding: 7px;
+      }
+      .fila {
+        display: flex;
+      }
+      .fila-centrar {
+        align-items: center;
+      }
+      .columna {
+        display: flex;
+        flex-direction: column;
+      }
+      .icono {
+        width: 16px;
+        height: 16px;
+        font-weight: 900;
+      }
+      .gap-standard {
+        gap: 12px;
+      }
+
+      nav {
+        justify-content: space-between;
+        align-items: center;
+        padding: 20px;
+        border-bottom: 1px solid #393c45;
+        color: #f6f6f65f;
+        font-size: 22px;
+        font-weight: 800;
+      }
+
+      .separador {
+        border: 1px solid #393c45;
+        height: 30px;
+      }
+
+      .perfil {
+        border-radius: 100%;
+        width: 32px;
+        height: 32px;
+      }
+
+      .titular {
+        font-weight: 600;
+        font-size: 17px;
+        color: white;
+      }
+
+      .relativo {
+        position: relative;
+      }
+
+      .icono-absoluto {
+        position: absolute;
+        left: 7px;
+      }
+
+      .busqueda {
+        background-color: transparent;
+        padding: 5px 0 5px 28px;
+        border-radius: 8px;
+        border: 1px solid #393c45;
+        color: white;
+        font-size: 18px;
+      }
+
+      .responsive-desktop {
+        display: none;
+      }
+
+      .responsive-mobile {
+        display: flex;
+      }
+
+      @media only screen and (min-width: 992px) {
+        .responsive-desktop {
+          display: flex;
+        }
+        .responsive-mobile {
+          display: none;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <nav class="fila">
+      <div class="fila fila-centrar gap-standard">
+        <button>
+          <img class="icono" src="./images/menu.svg" alt="menu" />
+        </button>
+        <img src="./images/logo.svg" alt="logo" />
+        <p class="titular">Dashboard</p>
+      </div>
+      <div class="fila fila-centrar gap-standard">
+        <button class="responsive-mobile">
+          <img class="icono" src="./images/lupa.svg" alt="lupa" />
+        </button>
+        <div class="fila fila-centrar gap-standard relativo responsive-desktop">
+          <img
+            class="icono icono-absoluto"
+            src="./images/lupa.svg"
+            alt="lupa"
+          />
+          <input class="busqueda" type="text" placeholder="Type / to search" />
+        </div>
+        <button class="fila fila-centrar gap-standard responsive-desktop">
+          <img class="icono" src="./images/octicon.svg" alt="octicon" />
+          <img class="icono" src="./images/arrow-down.svg" alt="flecha abajo" />
+        </button>
+        <div class="separador responsive-desktop"></div>
+        <button class="fila fila-centrar gap-standard responsive-desktop">
+          <img class="icono" src="./images/plus.svg" alt="plus" />
+          <img class="icono" src="./images/arrow-down.svg" alt="flecha abajo" />
+        </button>
+        <button class="responsive-desktop">
+          <img class="icono" src="./images/circle.svg" alt="circle" />
+        </button>
+        <button class="responsive-desktop">
+          <img class="icono" src="./images/fork.svg" alt="fork" />
+        </button>
+        <button class="responsive-desktop">
+          <img class="icono" src="./images/bookmark.svg" alt="bookmark" />
+        </button>
+        <button>
+          <img class="icono" src="./images/bandeja.svg" alt="bandeja" />
+        </button>
+        <img
+          class="perfil"
+          src="https://avatars.githubusercontent.com/u/61994784?v=4&size=64"
+          alt="profile-photo"
+        />
+      </div>
+    </nav>
+  </body>
+</html>
+<!--https://avatars.githubusercontent.com/u/61994784?v=4&size=64-->
