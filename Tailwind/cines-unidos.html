@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.3.0/js/all.min.js"
+      integrity="sha512-BivWm1+PupfLofQ5Ei/fNEC6Oq6IZiGO9WUm2ibWHZ33cj/qTX4zsBW/0SN9Myo4HEmINmr0wjuQE8eDL3rmng=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+  </head>
+  <body class="bg-[#1b1c1e]">
+    <div class="grid md:grid-cols-[100px_auto]">
+      <aside
+        class="sticky top-0 overflow-y-auto hidden md:flex flex-col items-center justify-between gap-6 py-8 px-2 text-[#72264a] font-bold text-2xl border-r-1 border-gray-600/50 h-screen"
+      >
+        <div class="flex flex-col items-center gap-6">
+          <i
+            class="fa-regular fa-house bg-gradient-to-r from-[#7f356f] to-[#942858] text-white p-1 rounded-md"
+          ></i>
+          <i class="fa-solid fa-clapperboard"></i>
+          <i class="fa-solid fa-film"></i>
+          <i class="fa-solid fa-ticket"></i>
+          <i class="fa-solid fa-bowl-food"></i>
+          <i class="fa-regular fa-bell"></i>
+          <i class="fa-solid fa-clock-rotate-left"></i>
+          <i class="fa-solid fa-tag"></i>
+          <i class="fa-solid fa-bullhorn"></i>
+        </div>
+        <div class="flex flex-col items-center gap-6">
+          <i class="fa-solid fa-circle-question"></i>
+          <p class="border border-gray-600/50 w-full"></p>
+          <i class="fa-solid fa-arrow-right-from-bracket"></i>
+        </div>
+      </aside>
+      <div>
+        <nav
+          class="sticky top-0 z-1 bg-[#1b1c1e] flex justify-between md:grid md:grid-cols-[auto_200px] px-6 py-4 border-b-1 border-gray-600/50"
+        >
+          <div class="flex justify-center items-center">
+            <img
+              src="https://www.cinesunidos.com/logo/complete-logo-red.png"
+              alt="logo"
+              class="w-[225px]"
+            />
+          </div>
+          <div class="flex justify-end items-center">
+            <select
+              class="bg-gradient-to-r from-[#7f356f] to-[#942858] p-2 pr-8 rounded-md text-white"
+              name="cine"
+              id=""
+            >
+              <option value="maracaibo">Maracaibo</option>
+            </select>
+          </div>
+        </nav>
+        <section class="p-8 flex flex-col gap-8">
+          <div class="w-full relative">
+            <img
+              src="https://stcinesunidoswebshared.blob.core.windows.net/sliders/HO00005975.jpg"
+              alt="odisea"
+              class="object-cover w-full rounded-md"
+            />
+            <div class="flex gap-4 absolute bottom-8 left-[50%]">
+              <div
+                class="p-1 rounded-full bg-gray-600/50 bg-gradient-to-r from-[#7f356f] to-[#942858] cursor-pointer"
+              ></div>
+              <div class="p-1 rounded-full bg-gray-600 cursor-pointer"></div>
+              <div class="p-1 rounded-full bg-gray-600 cursor-pointer"></div>
+              <div class="p-1 rounded-full bg-gray-600 cursor-pointer"></div>
+              <div class="p-1 rounded-full bg-gray-600 cursor-pointer"></div>
+            </div>
+          </div>
+          <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+            <div
+              class="bg-[#303030] rounded-md border-black flex justify-center items-center text-center font-semibold text-4xl text-white px-2 py-12"
+            >
+              Cines
+            </div>
+            <div
+              class="bg-[#303030] rounded-md border-black flex justify-center items-center text-center font-semibold text-4xl text-white px-2 py-12"
+            >
+              Cartelera
+            </div>
+            <div
+              class="bg-[#303030] rounded-md border-black flex justify-center items-center text-center font-semibold text-4xl text-white px-2 py-12"
+            >
+              Caramelería
+            </div>
+            <div
+              class="bg-[#303030] rounded-md border-black flex justify-center items-center text-center font-semibold text-4xl text-white px-2 py-12"
+            >
+              Preventa
+            </div>
+          </div>
+        </section>
+        <section></section>
+        <section></section>
+        <section></section>
+      </div>
+    </div>
+  </body>
+</html>
