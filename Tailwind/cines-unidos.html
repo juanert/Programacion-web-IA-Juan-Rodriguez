@@ -11,6 +11,8 @@
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     ></script>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
   </head>
   <body class="bg-[#1b1c1e]">
     <div class="grid md:grid-cols-[100px_auto]">
@@ -63,6 +65,8 @@
               src="https://stcinesunidoswebshared.blob.core.windows.net/sliders/HO00005975.jpg"
               alt="odisea"
               class="object-cover w-full rounded-md"
+              data-aos="fade-up"
+              data-aos-duration="1000"
             />
             <div class="flex gap-4 absolute bottom-8 left-[50%]">
               <div
@@ -77,21 +81,29 @@
           <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
             <div
               class="bg-[#303030] rounded-md border-black flex justify-center items-center text-center font-semibold text-4xl text-white px-2 py-12"
+              data-aos="fade-up"
+              data-aos-duration="100000"
             >
               Cines
             </div>
             <div
               class="bg-[#303030] rounded-md border-black flex justify-center items-center text-center font-semibold text-4xl text-white px-2 py-12"
+              data-aos="fade-up"
+              data-aos-duration="100000"
             >
               Cartelera
             </div>
             <div
               class="bg-[#303030] rounded-md border-black flex justify-center items-center text-center font-semibold text-4xl text-white px-2 py-12"
+              data-aos="fade-up"
+              data-aos-duration="100000"
             >
               Caramelería
             </div>
             <div
               class="bg-[#303030] rounded-md border-black flex justify-center items-center text-center font-semibold text-4xl text-white px-2 py-12"
+              data-aos="fade-up"
+              data-aos-duration="100000"
             >
               Preventa
             </div>
@@ -100,6 +112,9 @@
         <section></section>
         <section></section>
         <section></section>
+        <script>
+          AOS.init();
+        </script>
       </div>
     </div>
   </body>
