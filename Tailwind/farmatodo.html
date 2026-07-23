@@ -1,0 +1,142 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Farmatodo</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.3.0/js/all.min.js"
+      integrity="sha512-BivWm1+PupfLofQ5Ei/fNEC6Oq6IZiGO9WUm2ibWHZ33cj/qTX4zsBW/0SN9Myo4HEmINmr0wjuQE8eDL3rmng=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  </head>
+  <body class="bg-[#f8f8f8] min-h-screen">
+    <nav class="flex items-end justify-between gap-8 px-8 py-4 bg-white">
+      <div id="izquierda" class="flex items-center gap-8">
+        <img
+          src="https://www.farmatodo.com.ve/assets/svg/logo-farmatodo-blue.svg"
+          alt="logo"
+          class="w-[150px]"
+        />
+        <div
+          class="hidden md:flex items-center border border-white p-2 px-4 rounded-md text-xs bg-[#428fdf] text-white"
+        >
+          <div class="flex items-center pr-4 mr-4 border-r border-white gap-2">
+            <img
+              src="https://www.farmatodo.com.ve/assets/svg/ven-flag.svg"
+              alt="venezuela"
+              class="w-[25px]"
+            />
+            <i class="fa-solid fa-arrow-down text-white"></i>
+          </div>
+          <div class="flex items-center gap-2 font-bold cursor-pointer">
+            <p>Caracas</p>
+            <i class="fa-solid fa-arrow-down text-white"></i>
+          </div>
+        </div>
+      </div>
+      <div
+        id="centro"
+        class="w-full lg:max-w-[450px] xl:max-w-[700px] hidden lg:flex"
+      >
+        <div
+          class="flex items-center border border-[#428fdf] rounded-md w-full"
+        >
+          <input
+            class="w-full h-[35px] pl-4 focus:outline-none"
+            type="text"
+            placeholder="Buscar productos..."
+          />
+          <button
+            class="h-[35px] flex justify-center items-center px-4 bg-[#428fdf] text-white cursor-pointer"
+          >
+            <i class="fa-solid fa-magnifying-glass"></i>
+          </button>
+        </div>
+      </div>
+      <div id="derecha" class="flex items-center gap-2 md:gap-4">
+        <div
+          class="p-2 flex lg:hidden justify-center items-center rounded-full bg-[#428fdf] text-white w-[25px] h-[25px] md:w-[35px] md:h-[35px]"
+        >
+          <i class="fa-solid fa-magnifying-glass"></i>
+        </div>
+        <div
+          class="p-2 flex md:hidden justify-center items-center rounded-full bg-[#428fdf] text-white w-[25px] h-[25px] md:w-[35px] md:h-[35px]"
+        >
+          <img
+            src="https://www.farmatodo.com.ve/assets/svg/ven-flag.svg"
+            alt="venezuela"
+            class=""
+          />
+        </div>
+
+        <div
+          class="p-2 flex justify-center items-center rounded-full bg-[#428fdf] text-white w-[25px] h-[25px] md:w-[35px] md:h-[35px]"
+        >
+          <i class="fa-regular fa-user"></i>
+        </div>
+        <div
+          class="p-2 flex justify-center items-center rounded-full bg-[#428fdf] text-white relative w-[25px] h-[25px] md:w-[35px] md:h-[35px]"
+        >
+          <p
+            class="absolute top-[-5px] right-[-5px] bg-red-600 text-xs h-[12px] w-[12px] flex justify-center items-center rounded-full p-2"
+          >
+            1
+          </p>
+          <i class="fa-solid fa-cart-shopping"></i>
+        </div>
+      </div>
+    </nav>
+    <nav
+      class="flex items-center md:justify-center gap-6 py-2 px-8 bg-[#428fdf] overflow-auto"
+    >
+      <p
+        class="text-white hover:font-semibold cursor-pointer flex gap-2 items-center"
+      >
+        Medicamentos <i class="fa-solid fa-sort-down text-xs font-light"></i>
+      </p>
+      <p
+        class="text-white hover:font-semibold cursor-pointer flex gap-2 items-center"
+      >
+        Belleza <i class="fa-solid fa-sort-down text-xs font-light"></i>
+      </p>
+      <p
+        class="text-white hover:font-semibold cursor-pointer flex gap-2 items-center"
+      >
+        Bebidas <i class="fa-solid fa-sort-down text-xs font-light"></i>
+      </p>
+      <p
+        class="text-white hover:font-semibold cursor-pointer flex gap-2 items-center"
+      >
+        Snacks <i class="fa-solid fa-sort-down text-xs font-light"></i>
+      </p>
+      <p
+        class="text-white hover:font-semibold cursor-pointer flex gap-2 items-center"
+      >
+        Alimentos <i class="fa-solid fa-sort-down text-xs font-light"></i>
+      </p>
+      <p
+        class="text-white hover:font-semibold cursor-pointer flex gap-2 items-center"
+      >
+        Bebés <i class="fa-solid fa-sort-down text-xs font-light"></i>
+      </p>
+      <p
+        class="text-white hover:font-semibold cursor-pointer flex gap-2 items-center"
+      >
+        Hogar <i class="fa-solid fa-sort-down text-xs font-light"></i>
+      </p>
+      <p
+        class="text-white hover:font-semibold cursor-pointer flex gap-2 items-center"
+      >
+        Mascotas <i class="fa-solid fa-sort-down text-xs font-light"></i>
+      </p>
+    </nav>
+    <script>
+      AOS.init();
+    </script>
+  </body>
+</html>
