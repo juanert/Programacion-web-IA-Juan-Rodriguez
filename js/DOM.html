@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>DOM</title>
+    <style>
+      * {
+        padding: 0;
+        margin: 0;
+        box-sizing: border-box;
+      }
+      div.content {
+        background-color: burlywood;
+        padding: 80px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 25px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="content">
+      <p class="content">Hola Mundo</p>
+      <button id="boton">Presioname</button>
+    </div>
+    <script>
+      /*
+        getElementsByTagName(etiqueta) //devuelve un array con todos los elementos de esa etiqueta
+        getElementsByClassName(clase) //devuelve un array con todas las etiquetas que tengan esa clase
+        getElementById(id) //devuelve el elemento HTML seleccionado
+        querySelectorAll(elemento) // me permite seleccionar una etiqueta HTML, .clase o #id
+
+        //Los elementos HTML son su propio tipo de dato llamado NODE (Nodos), son como objetos realmente
+      */
+      document.getElementById("boton").addEventListener("click", () => {
+        let contenido = document.getElementsByClassName("content")[0];
+        let parrafos = document.querySelectorAll("p");
+        if (contenido.style.backgroundColor == "black") {
+          contenido.style.backgroundColor = "burlywood";
+          parrafos.forEach((parrafo) => {
+            parrafo.style.color = "black";
+          });
+        } else {
+          contenido.style.backgroundColor = "black";
+          parrafos.forEach((parrafo) => {
+            parrafo.style.color = "white";
+          });
+        }
+      });
+      /*
+        Realiza el piedra papel o tijera de manera visual
+      */
+    </script>
+  </body>
+</html>
