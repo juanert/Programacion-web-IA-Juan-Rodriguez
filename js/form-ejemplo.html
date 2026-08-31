@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <form action="">
+      <label for="nombre"></label>
+      <input type="text" id="nombre" placeholder="nombre" />
+      <!--
+        Los radio button
+        Y los checkbox
+      -->
+      <input type="radio" name="genero" id="" />
+      <span>Hombre</span>
+      <input type="radio" name="genero" id="" />
+      <span>Mujer</span>
+      <div>
+        <p>Marca los elementos que tienes en tu hogar</p>
+        <input type="checkbox" name="informacion" id="" />
+        <span>Tablet</span>
+        <input type="checkbox" name="informacion" id="" />
+        <span>Telefono</span>
+        <input type="checkbox" name="informacion" id="" />
+        <span>Laptop</span>
+        <input type="checkbox" name="informacion" id="" />
+        <span>Computadora</span>
+      </div>
+      <input type="submit" value="enviar" />
+      <div id="mensajes"></div>
+    </form>
+    <script>
+      document.addEventListener("DOMContentLoaded", (e) => {
+        let formulario = document.querySelector("form");
+        formulario.addEventListener("submit", (evento) => {
+          evento.preventDefault();
+          let mensajes = ["hola", "mundo"];
+          let parrafo = document.querySelector("#mensajes");
+          parrafo.innerHTML = "";
+          mensajes.forEach((mensaje) => {
+            let mensajeHTML = document.createElement("p");
+            mensajeHTML.innerText = mensaje;
+            parrafo.appendChild(mensajeHTML);
+          });
+        });
+      });
+    </script>
+  </body>
+</html>
