@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+  </head>
+  <body class="bg-blue-600 p-16 flex flex-col gap-8">
+    <h1 class="text-center text-white">Piedra Papel Tijera</h1>
+    <section class="grid grid-cols-3 gap-4">
+      <div class="flex flex-col gap-8 items-center">
+        <h2 id="usuario"></h2>
+        <div class="flex gap-4">
+          <button
+            class="border border-white rounded-md px-4 py-2 cursor-pointer"
+          >
+            ✊
+          </button>
+          <button
+            class="border border-white rounded-md px-4 py-2 cursor-pointer"
+          >
+            🤚
+          </button>
+          <button
+            class="border border-white rounded-md px-4 py-2 cursor-pointer"
+          >
+            ✌️
+          </button>
+        </div>
+      </div>
+      <div class="flex flex-col gap-8 items-center">
+        <p class="text-white">Ganador</p>
+        <p id="resultado" class="text-white text-2xl font-semibold"></p>
+      </div>
+      <div class="flex flex-col gap-8 items-center">
+        <h2 id="computadora"></h2>
+      </div>
+    </section>
+    <script>
+      /**
+       * Evalúa una jugada de Piedra, Papel o Tijera contra una elección aleatoria de la PC.
+       *
+       * @param {string} jugada - La elección del jugador, representada por un emoji ("✊", "🤚" o "✌️").
+       * @returns {{mensaje: string, jugador: string, pc: string}} Objeto con el resultado detallado de la partida.
+       */
+      function ppt(jugada) {
+        let opciones = ["✊", "🤚", "✌️"];
+        let jugador = jugada;
+        let pc = opciones[Math.floor(Math.random() * opciones.length)];
+
+        if (jugador === pc) {
+          return { mensaje: "Empate", jugador, pc };
+        } else if (
+          (jugador === "✊" && pc === "✌️") ||
+          (jugador === "🤚" && pc === "✊") ||
+          (jugador === "✌️" && pc === "🤚")
+        ) {
+          return { mensaje: "El jugador gano", jugador, pc };
+        } else if (
+          (pc === "✊" && jugador === "✌️") ||
+          (pc === "🤚" && jugador === "✊") ||
+          (pc === "✌️" && jugador === "🤚")
+        ) {
+          return { mensaje: "La PC gano", jugador, pc };
+        } else {
+          return { mensaje: "de alguna forma, algo salio mal", jugador, pc };
+        }
+      }
+
+      /**
+       * @type {NodeListOf<HTMLButtonElement>}
+       * Colección de todos los elementos <button> en el documento.
+       */
+      let botones = document.querySelectorAll("button");
+
+      botones.forEach((boton) => {
+        /**
+         * Manejador del evento click para cada botón de jugada.
+         * Ejecuta la función ppt() y actualiza los elementos correspondientes en el DOM.
+         *
+         * @param {MouseEvent} event - El objeto del evento generado al hacer click.
+         */
+        boton.addEventListener("click", (event) => {
+          let textoBoton = event.target.innerHTML.trim();
+          let resultado = ppt(textoBoton);
+
+          // Actualización de la interfaz de usuario con los resultados
+          document.querySelector("#resultado").innerHTML = resultado.mensaje;
+          document.querySelector("#usuario").innerHTML = resultado.jugador;
+          document.querySelector("#computadora").innerHTML = resultado.pc;
+        });
+      });
+    </script>
+  </body>
+</html>

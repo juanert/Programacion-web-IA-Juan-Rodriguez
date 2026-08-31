@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+  </head>
+  <body>
+    <form>
+      <div>
+        <label for="nombre">Nombre</label>
+        <input type="text" placeholder="Nombre" />
+      </div>
+      <div>
+        <label for="Apellido">Apellido</label>
+        <input type="text" placeholder="Apellido" />
+      </div>
+      <div>
+        <label for="Correo">Correo</label>
+        <input type="email" placeholder="Correo" />
+      </div>
+      <div>
+        <label for="Telefono">Telefono</label>
+        <input type="text" placeholder="Telefono" />
+      </div>
+      <div>
+        <label for="Contraseña">Contraseña</label>
+        <input type="password" placeholder="Contraseña" />
+      </div>
+      <p id="error"></p>
+      <input type="submit" value="Enviar" />
+    </form>
+    <script>
+      let nombre = "Juan";
+      let apellido = "Rodriguez";
+      let correo = "juanrodriguez@lexpin.online";
+      let telefono = "+584127850227";
+      let password = "Hola1234.";
+
+      let nombreRegex = /^[a-zA-ZñÑáÁéÉíÍóÓúÚ/s']+$/i;
+      let correoRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+      let telefonoRegex = /^\+\d{9,15}$/;
+      let passwordRegex =
+        /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[@$!%*#?&\.])[A-Za-z\d@$!%*#?&\.]{8,50}$/;
+
+      let errors = [];
+      if (!nombreRegex.test(nombre)) {
+        errors.push("El nombre no es valido");
+      }
+      if (!nombreRegex.test(apellido)) {
+        errors.push("El apellido no es valido");
+      }
+      if (!correoRegex.test(correo)) {
+        errors.push("El correo no es valido");
+      }
+      if (!telefonoRegex.test(telefono)) {
+        errors.push("El apellido no es valido");
+      }
+      if (!passwordRegex.test(password)) {
+        error.push(
+          "La contraseña no es valida, debe contener minimo 8 caracteres, 1 mayuscula, 1 minuscula, 1 numero, 1 caracter especial",
+        );
+      }
+
+      console.log(errors);
+    </script>
+  </body>
+</html>
