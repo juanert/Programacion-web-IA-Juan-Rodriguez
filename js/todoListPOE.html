@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+  </head>
+  <body
+    class="bg-blue-600 flex flex-col justify-center items-center min-h-screen gap-4 p-8 text-white"
+  >
+    <h1 class="text-white font-semibold text-2xl text-center">
+      Lista de tareas
+    </h1>
+    <div class="flex justify-center items-center gap-2">
+      <input id="tarea" class="text-black" type="text" placeholder="Tarea..." />
+      <button
+        id="agregarTarea"
+        class="bg-white text-black rounded-md px-4 py-2 border border-blue-600"
+      >
+        Agregar Tarea
+      </button>
+    </div>
+    <div id="tareas" class="flex flex-col gap-4"></div>
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        let tareas = [];
+
+        let agregarTarea = () => {
+          let input = document.querySelector("#tarea").value.trim();
+          let tarea = { tarea: input, completada: false };
+          tareas.push(tarea);
+          input.value = "";
+        };
+
+        window.completarTarea = (index) => {
+          tareas[index].completada = !tareas[index].completada;
+          mostrarTareas();
+        };
+
+        window.borrarTarea = (index) => {
+          tareas.splice(index, 1);
+          mostrarTareas();
+        };
+
+        let mostrarTareas = () => {
+          document.querySelector("#tareas").innerHTML = "";
+          tareas.forEach((elemento, index) => {
+            let tarea = document.createElement("div");
+            tarea.classList.add(
+              "flex",
+              "justify-between",
+              "gap-2",
+              "items-center",
+            );
+            tarea.innerHTML = `
+            <p class="${elemento.completada ? "text-green-600" : "text-black"}">${elemento.tarea}</p>
+            <div>
+              <button onclick="completarTarea(${index})" class="bg-white rounded-md px-4 py-2 border border-blue-600">✅</button>
+              <button onclick="borrarTarea(${index})" class="bg-white rounded-md px-4 py-2 border border-blue-600">🗑️</button>
+            </div>
+          `;
+            let tareasHTML = document.querySelector("#tareas");
+            tareasHTML.appendChild(tarea);
+          });
+        };
+
+        let botonAgregarTarea = document.querySelector("#agregarTarea");
+        botonAgregarTarea.addEventListener("click", (e) => {
+          agregarTarea();
+          mostrarTareas();
+        });
+      });
+    </script>
+  </body>
+</html>
