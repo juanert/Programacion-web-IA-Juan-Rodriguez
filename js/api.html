@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>rick and morty API</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+  </head>
+  <body class="bg-blue-600 text-white p-8 flex flex-col items-center gap-8">
+    <h1 class="font-bold text-3xl">API de Rick and Morty</h1>
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-4" id="personajes"></div>
+    <script>
+      fetch("https://rickandmortyapi.com/api/character")
+        .then((infoApi) => {
+          return infoApi.json();
+        })
+        .then((lista) => {
+          let divPersonajes = document.querySelector("#personajes");
+          lista.results.forEach((personaje) => {
+            let divPersonaje = document.createElement("div");
+            divPersonaje.classList.add(
+              "bg-white",
+              "p-4",
+              "text-black",
+              "flex",
+              "flex-col",
+              "gap-2",
+              "rounded-md"
+            );
+            divPersonaje.innerHTML = `
+              <img src="${personaje.image}" />
+              <h2 class="text-2xl font-semibold">${personaje.name}</h2>
+              <p class="text-md font-regular">Estado: ${personaje.status}</p>
+            `;
+            divPersonajes.appendChild(divPersonaje);
+          });
+        })
+        .catch((error) => {
+          console.log(`Hubo un error: ${error.message}`);
+        });
+    </script>
+  </body>
+</html>
