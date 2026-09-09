@@ -24,22 +24,26 @@
     <div id="tareas" class="flex flex-col gap-4"></div>
     <script>
       document.addEventListener("DOMContentLoaded", () => {
-        let tareas = [];
+        let tareas = localStorage.getItem("tareas") || [];
+        tareas = JSON.parse(tareas);
 
         let agregarTarea = () => {
           let input = document.querySelector("#tarea").value.trim();
           let tarea = { tarea: input, completada: false };
           tareas.push(tarea);
+          localStorage.setItem("tareas", JSON.stringify(tareas));
           input.value = "";
         };
 
         window.completarTarea = (index) => {
           tareas[index].completada = !tareas[index].completada;
+          localStorage.setItem("tareas", JSON.stringify(tareas));
           mostrarTareas();
         };
 
         window.borrarTarea = (index) => {
           tareas.splice(index, 1);
+          localStorage.setItem("tareas", JSON.stringify(tareas));
           mostrarTareas();
         };
 
@@ -70,6 +74,8 @@
           agregarTarea();
           mostrarTareas();
         });
+
+        mostrarTareas();
       });
     </script>
   </body>

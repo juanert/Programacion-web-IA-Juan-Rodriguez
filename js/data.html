@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      /*LOCAL STORAGE*/
+      let data = {
+        name: "John Doe",
+        age: 30,
+        email: "",
+      };
+      /*
+      {
+        "name": "John Doe",
+        "age": 30,
+        "email": ""
+      }
+      */
+      //guardar en local storage
+      localStorage.setItem("data", JSON.stringify(data));
+      //traer informacion de local storage
+      let dataLocalStorage = JSON.parse(localStorage.getItem("data"));
+      //modificar local storage
+      dataLocalStorage.name = "Jane Doe";
+      localStorage.setItem("data", JSON.stringify(dataLocalStorage));
+      //eliminar local storage
+      localStorage.removeItem("data");
+
+      /*SESSION STORAGE*/
+      let sessionData = {
+        name: "John Doe",
+        age: 30,
+        email: "",
+      };
+      //guardar en session storage
+      sessionStorage.setItem("sessionData", JSON.stringify(sessionData));
+      //traer informacion de session storage
+      let sessionDataStorage = JSON.parse(
+        sessionStorage.getItem("sessionData"),
+      );
+      //modificar session storage
+      sessionDataStorage.name = "Jane Doe";
+      sessionStorage.setItem("sessionData", JSON.stringify(sessionDataStorage));
+      //eliminar session storage
+      sessionStorage.removeItem("sessionData");
+      //COOKIES
+      //obtener la fecha de expiracion dentro de una semana
+      //configurar hora del servidor
+
+      let date = new Date();
+      console.log(date);
+      let expires = new Date(date.getTime() + 7 * 24 * 60 * 60 * 1000);
+      console.log(expires);
+      document.cookie = `name=John Doe; expires=${expires.toUTCString()}; path=/`;
+
+      //leer una cookie
+      let cookies = document.cookie.split("; ");
+      let cookieName = cookies.find((cookie) => cookie.startsWith("name="));
+      if (cookieName) {
+        let cookieValue = cookieName.split("=")[1];
+        console.log(cookieValue);
+      } else {
+        console.log("Cookie not found");
+      }
+
+    </script>
+  </body>
+</html>
