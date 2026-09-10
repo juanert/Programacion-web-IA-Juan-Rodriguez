@@ -28,9 +28,11 @@
               "rounded-md"
             );
             divPersonaje.innerHTML = `
+            <a href="./personaje.html?id=${personaje.id}">
               <img src="${personaje.image}" />
               <h2 class="text-2xl font-semibold">${personaje.name}</h2>
               <p class="text-md font-regular">Estado: ${personaje.status}</p>
+            </a>
             `;
             divPersonajes.appendChild(divPersonaje);
           });

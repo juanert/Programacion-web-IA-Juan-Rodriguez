@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        try {
+          async function obtenerInformacion(id) {
+            let personaje = await fetch(
+              `https://rickandmortyapi.com/api/character/${id}`,
+            ).then((data) => data.json());
+            console.log(personaje);
+            if (personaje.error) {
+              document.body.innerHTML =
+                "<h1>Oops, no se encontro ningun personaje</h1>";
+            } else {
+              document.body.innerHTML = personaje.name;
+            }
+          }
+
+          // 1. Obtener la cadena de consulta de la URL (ej. "?id=45&nombre=carlos")
+          const parametrosUrl = window.location.search;
+
+          // 2. Crear un objeto URLSearchParams
+          const parametros = new URLSearchParams(parametrosUrl);
+
+          // 3. Obtener el valor de una variable específica
+          const idValor = parametros.get("id");
+
+          if (!idValor) {
+            document.body.innerHTML =
+              "<h1>Oops, no se encontro ningun personaje</h1>";
+          } else {
+            obtenerInformacion(idValor);
+          }
+        } catch (error) {
+          document.body.innerHTML = "<h1>Ops, hubo un error</h1>";
+          console.log(error.message);
+        }
+      });
+    </script>
+  </body>
+</html>
