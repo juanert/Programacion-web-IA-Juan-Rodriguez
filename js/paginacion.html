@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <button id="anterior">atras</button>
+    <p id="pagina"></p>
+    <p id="limite"></p>
+    <button id="siguiente">siguiente</button>
+    <script>
+      /**
+       * Se escucha el evento "DOMContentLoaded" para asegurar que el HTML se haya cargado
+       * completamente antes de intentar acceder a los botones.
+       * Hacemos el callback `async` para poder usar `await` al cargar la primera página.
+       */
+      document.addEventListener("DOMContentLoaded", async () => {
+        /**
+         * @type {number} paginaActual - Rastrea la página que el usuario está viendo actualmente.
+         */
+        let paginaActual = 1;
+
+        /**
+         * @type {number} limite - Almacena el número total de páginas disponibles en la API.
+         * Se inicializa en 0 y se actualiza al hacer la primera petición.
+         */
+        let limite = 0;
+
+        /**
+         * Realiza una petición a la API de Rick and Morty para obtener los personajes
+         * de una página específica. Actualiza el límite total de páginas.
+         *
+         * @async
+         * @function traerPersonajes
+         * @param {number} pagina - El número de página que se desea consultar a la API.
+         * @returns {Promise<void>} No retorna ningún valor directamente, pero actualiza la variable `limite`.
+         */
+        async function traerPersonajes(pagina) {
+          // 1. Hacemos la petición a la API usando la página que recibimos como parámetro.
+          let personajes = await fetch(
+            `https://rickandmortyapi.com/api/character?page=${pagina}`,
+          ).then((datos) => datos.json());
+
+          // 2. Mostramos en consola el arreglo de personajes obtenidos.
+          // (Aquí podrías agregar lógica para mostrarlos en el HTML).
+          console.log(personajes.results);
+
+          // 3. Guardamos el número total de páginas que la API nos indica que existen.
+          limite = personajes.info.pages;
+        }
+
+        // --- INICIO DEL PROGRAMA ---
+
+        // Esperamos a que se traiga la página 1 antes de permitir cualquier interacción.
+        await traerPersonajes(paginaActual);
+
+        // Como estamos en la página 1, nos aseguramos de que el botón "Anterior" esté deshabilitado.
+        document.querySelector("#anterior").disabled = true;
+
+        /**
+         * Avanza a la siguiente página. Incrementa la variable `paginaActual`,
+         * hace una nueva petición a la API y ajusta el estado de los botones.
+         *
+         * @async
+         * @function siguiente
+         */
+        async function siguiente() {
+          // 1. Sumamos 1 a la página actual.
+          paginaActual++;
+
+          // 2. Llamamos a la API para traer los personajes de esta nueva página.
+          await traerPersonajes(paginaActual);
+
+          // 3. Si llegamos a la última página disponible, deshabilitamos el botón "Siguiente".
+          if (paginaActual === limite) {
+            document.querySelector("#siguiente").disabled = true;
+          }
+
+          // 4. Como acabamos de avanzar, es seguro habilitar el botón "Anterior".
+          document.querySelector("#anterior").disabled = false;
+        }
+
+        /**
+         * Retrocede a la página anterior. Disminuye la variable `paginaActual`,
+         * hace una nueva petición a la API y ajusta el estado de los botones.
+         *
+         * @async
+         * @function anterior
+         */
+        async function anterior() {
+          // 1. Restamos 1 a la página actual.
+          paginaActual--;
+
+          // 2. Llamamos a la API para traer los personajes de esta nueva página.
+          await traerPersonajes(paginaActual);
+
+          // 3. Si retrocedimos hasta la primera página, deshabilitamos el botón "Anterior".
+          if (paginaActual === 1) {
+            document.querySelector("#anterior").disabled = true;
+          }
+
+          // 4. Como acabamos de retroceder, no estamos en la última página,
+          // así que es seguro habilitar el botón "Siguiente".
+          document.querySelector("#siguiente").disabled = false;
+        }
+
+        // --- ASIGNACIÓN DE EVENTOS A LOS BOTONES ---
+
+        // Al hacer clic en el botón "Siguiente", se ejecuta la función siguiente()
+        document
+          .querySelector("#siguiente")
+          .addEventListener("click", siguiente);
+
+        // Al hacer clic en el botón "Anterior", se ejecuta la función anterior()
+        document.querySelector("#anterior").addEventListener("click", anterior);
+      });
+    </script>
+  </body>
+</html>
