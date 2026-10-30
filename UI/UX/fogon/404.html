@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Página no encontrada · Fogón</title>
+  <meta name="robots" content="noindex">
+  <meta name="theme-color" content="#FAF6F0">
+  <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+  <script src="assets/js/head.js"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400..600;1,9..144,400&family=Inter:wght@400..600&display=swap">
+  <link rel="stylesheet" href="assets/css/styles.css">
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4.1.11"></script>
+  <style>
+    /* Volutas de humo sobre el isotipo "apagado" (solo opacidad y transform). */
+    .smoke path { animation: smoke 3.2s ease-in-out infinite; }
+    .smoke path:nth-child(2) { animation-delay: 1.1s; }
+    .smoke path:nth-child(3) { animation-delay: 2.1s; }
+  </style>
+</head>
+<body data-page="error">
+  <script src="assets/js/data.js"></script>
+  <script src="assets/js/core.js"></script>
+  <script src="assets/js/layout.js"></script>
+
+  <main id="contenido" tabindex="-1" class="grid min-h-[80svh] place-items-center">
+    <section class="wrap py-16 text-center" aria-labelledby="error-title">
+      <div class="relative mx-auto h-32 w-32 text-ink">
+        <!-- Humo que sale del fogón apagado. -->
+        <svg class="smoke absolute -top-10 left-1/2 h-16 w-16 -translate-x-1/2 text-muted" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" aria-hidden="true">
+          <path d="M26 58c-6-8 6-12 0-22s4-14 2-22"/>
+          <path d="M34 60c-5-7 5-11 0-19s3-12 1-19"/>
+          <path d="M42 58c-4-6 4-9 0-16s2-10 1-16"/>
+        </svg>
+        <span id="extinguished-mark" class="block h-full w-full"></span>
+      </div>
+      <p class="eyebrow mt-8">Error 404</p>
+      <h1 id="error-title" class="text-h1 mt-2">Esta página se nos quemó</h1>
+      <p class="mx-auto mt-4 max-w-md text-muted">El enlace no existe o cambió de lugar. La carta y el contacto siguen en su sitio.</p>
+      <div class="mt-8 flex flex-col justify-center gap-3 sm:flex-row">
+        <a class="btn btn-primary" href="menu.html">Ver la carta</a>
+        <a class="btn btn-secondary" href="index.html">Ir al inicio</a>
+      </div>
+    </section>
+  </main>
+
+  <script>Fogon.layout.renderBottom(document.currentScript);</script>
+  <script>document.getElementById('extinguished-mark').innerHTML = Fogon.logoMark({ extinguished: true, title: 'Isotipo de Fogón con la llama apagada' });</script>
+  <script src="assets/js/dishes.js"></script>
+  <script src="assets/js/ui.js"></script>
+</body>
+</html>

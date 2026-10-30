@@ -1,0 +1,277 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Contacto, horario y ubicación · Fogón</title>
+  <meta name="description" content="Horario, dirección en Las Mercedes, reservas por WhatsApp, grupos y eventos privados, formas de pago y preguntas frecuentes de Fogón.">
+  <meta name="theme-color" content="#FAF6F0">
+  <meta property="og:title" content="Contacto y ubicación · Fogón">
+  <meta property="og:description" content="Reserva por WhatsApp o por teléfono. Calle París, Las Mercedes, Caracas.">
+  <meta property="og:locale" content="es_VE">
+  <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+  <script src="assets/js/head.js"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400..600;1,9..144,400&family=Inter:wght@400..600&display=swap">
+  <link rel="stylesheet" href="assets/css/styles.css">
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4.1.11"></script>
+</head>
+<body data-page="contacto">
+  <script src="assets/js/data.js"></script>
+  <script src="assets/js/core.js"></script>
+  <script src="assets/js/layout.js"></script>
+
+  <main id="contenido" tabindex="-1">
+
+    <!-- Introducción + estado actual. -->
+    <section class="wrap pt-10 pb-10 md:pt-14" aria-labelledby="contact-title">
+      <p class="eyebrow">Contacto y ubicación</p>
+      <h1 id="contact-title" class="text-h1 mt-2">Hablemos, te esperamos</h1>
+      <p class="mt-4 text-lg text-muted measure">Respondemos por WhatsApp y por teléfono en horario de atención. Para reservar no necesitas pagar nada por adelantado.</p>
+      <div class="mt-5" data-status></div>
+      <div class="mt-4" data-announcement></div>
+    </section>
+
+    <!-- Tarjetas de contacto de un toque. WhatsApp es el canal principal. -->
+    <section class="wrap" aria-label="Formas de contacto" data-zone="contact-cards">
+      <ul class="grid gap-4 sm:grid-cols-2 lg:grid-cols-4" role="list">
+        <li>
+          <a class="group flex h-full flex-col rounded-xl bg-brand p-6 text-on-brand transition-colors hover:bg-brand-hover" href="https://wa.me/584120000000?text=Hola%2C%20tengo%20una%20consulta%20sobre%20Fog%C3%B3n." target="_blank" rel="noopener">
+            <svg class="icon icon--24" viewBox="0 0 24 24" aria-hidden="true"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/><path d="M9 9.5c0 3 2.5 5.5 5.5 5.5l1.2-1.2-1.8-1-1 .8a4 4 0 0 1-2.5-2.5l.8-1-1-1.8Z"/></svg>
+            <span class="mt-6 font-display text-2xl font-medium">WhatsApp</span>
+            <span class="mt-1 font-semibold tabular-nums">+58 412 000 0000</span>
+            <span class="mt-3 text-[0.9375rem] opacity-90">La forma más rápida. Respondemos en minutos.</span>
+            <span class="mt-auto inline-flex items-center gap-1.5 pt-5 font-semibold">Escribir ahora <svg class="icon transition-transform group-hover:translate-x-1" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></span>
+          </a>
+        </li>
+        <li>
+          <a class="group flex h-full flex-col rounded-xl bg-paper p-6 shadow-[var(--shadow-card)] transition-colors hover:bg-sand" href="tel:+584120000000">
+            <svg class="icon icon--24 text-brass" viewBox="0 0 24 24" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2Z"/></svg>
+            <span class="mt-6 font-display text-2xl font-medium">Teléfono</span>
+            <span class="mt-1 font-semibold tabular-nums">+58 412 000 0000</span>
+            <span class="mt-3 text-[0.9375rem] text-muted">Si prefieres hablar con una persona.</span>
+            <span class="mt-auto inline-flex items-center gap-1.5 pt-5 font-semibold text-brand">Llamar <svg class="icon transition-transform group-hover:translate-x-1" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></span>
+          </a>
+        </li>
+        <li>
+          <a class="group flex h-full flex-col rounded-xl bg-paper p-6 shadow-[var(--shadow-card)] transition-colors hover:bg-sand" href="mailto:hola@fogon.example">
+            <svg class="icon icon--24 text-brass" viewBox="0 0 24 24" aria-hidden="true"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+            <span class="mt-6 font-display text-2xl font-medium">Correo</span>
+            <span class="mt-1 break-all font-semibold">hola@fogon.example</span>
+            <span class="mt-3 text-[0.9375rem] text-muted">Para eventos, prensa y proveedores.</span>
+            <span class="mt-auto inline-flex items-center gap-1.5 pt-5 font-semibold text-brand">Escribir correo <svg class="icon transition-transform group-hover:translate-x-1" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></span>
+          </a>
+        </li>
+        <li>
+          <a class="group flex h-full flex-col rounded-xl bg-paper p-6 shadow-[var(--shadow-card)] transition-colors hover:bg-sand" href="https://instagram.com/fogon.cocinadelena" target="_blank" rel="noopener">
+            <svg class="icon icon--24 text-brass" viewBox="0 0 24 24" aria-hidden="true"><rect width="20" height="20" x="2" y="2" rx="5"/><circle cx="12" cy="12" r="4"/><path d="M17.5 6.5h.01"/></svg>
+            <span class="mt-6 font-display text-2xl font-medium">Instagram</span>
+            <span class="mt-1 font-semibold">@fogon.cocinadelena</span>
+            <span class="mt-3 text-[0.9375rem] text-muted">Platos del día, novedades y eventos.</span>
+            <span class="mt-auto inline-flex items-center gap-1.5 pt-5 font-semibold text-brand">Ver perfil <svg class="icon transition-transform group-hover:translate-x-1" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></span>
+          </a>
+        </li>
+      </ul>
+    </section>
+
+    <!-- Horario + Ubicación. -->
+    <section class="section" aria-label="Horario y ubicación">
+      <div class="wrap grid gap-16 lg:grid-cols-12 lg:gap-8">
+        <div id="horario" class="lg:col-span-5">
+          <p class="eyebrow">Horario</p>
+          <h2 class="text-h2 mt-2">Cuándo abrimos</h2>
+          <div class="mt-4" data-status></div>
+          <div class="mt-6 overflow-hidden rounded-xl border border-line bg-paper">
+            <table class="w-full text-[0.9375rem]">
+              <caption class="sr-only">Horario semanal de Fogón</caption>
+              <tbody id="hours-body"></tbody>
+            </table>
+          </div>
+          <div class="mt-6 rounded-xl border border-brass/50 p-5">
+            <h3 class="flex items-center gap-2 font-semibold">
+              <svg class="icon text-brass" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 2v4"/><path d="M16 2v4"/><rect width="18" height="18" x="3" y="4" rx="2"/><path d="M3 10h18"/></svg>
+              Horarios especiales
+            </h3>
+            <ul class="mt-3 space-y-1.5 text-muted" role="list">
+              <li class="flex justify-between gap-4"><span>24 y 31 de diciembre</span><span class="text-right">12:00 m. – 6:00 p. m.</span></li>
+              <li class="flex justify-between gap-4"><span>1 de enero</span><span class="text-alert">Cerrado</span></li>
+            </ul>
+          </div>
+        </div>
+
+        <div id="ubicacion" class="lg:col-span-6 lg:col-start-7">
+          <p class="eyebrow">Ubicación</p>
+          <h2 class="text-h2 mt-2">Cómo llegar</h2>
+          <p class="mt-4 flex items-start gap-3">
+            <svg class="icon mt-1 text-brass" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 10c0 5-5.5 10.2-7.4 11.8a1 1 0 0 1-1.2 0C9.5 20.2 4 15 4 10a8 8 0 0 1 16 0"/><circle cx="12" cy="10" r="3"/></svg>
+            <span><b class="font-semibold">Calle París, Las Mercedes, Caracas.</b><br><span class="text-muted">A dos cuadras de la plaza.</span></span>
+          </p>
+          <!-- Mapa estático; el interactivo solo se carga si se pide (ahorra datos). -->
+          <div class="relative mt-6 aspect-[4/3] overflow-hidden rounded-xl" data-map-frame>
+            <div class="absolute inset-0" data-photo="map"></div>
+          </div>
+          <button type="button" class="btn btn-secondary btn-sm mt-3" data-load-map>
+            <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 10c0 5-5.5 10.2-7.4 11.8a1 1 0 0 1-1.2 0C9.5 20.2 4 15 4 10a8 8 0 0 1 16 0"/><circle cx="12" cy="10" r="3"/></svg>
+            Cargar mapa interactivo
+          </button>
+          <div class="mt-6 grid gap-2 sm:grid-cols-3">
+            <a class="btn btn-secondary" href="https://www.google.com/maps/search/?api=1&amp;query=Calle%20Par%C3%ADs%2C%20Las%20Mercedes%2C%20Caracas%2C%20Venezuela" target="_blank" rel="noopener">Google Maps</a>
+            <a class="btn btn-secondary" href="https://waze.com/ul?q=Calle%20Par%C3%ADs%2C%20Las%20Mercedes%2C%20Caracas%2C%20Venezuela&amp;navigate=yes" target="_blank" rel="noopener">Waze</a>
+            <a class="btn btn-secondary" href="https://maps.apple.com/?q=Calle%20Par%C3%ADs%2C%20Las%20Mercedes%2C%20Caracas%2C%20Venezuela" target="_blank" rel="noopener">Apple Maps</a>
+          </div>
+          <ul class="mt-8 grid gap-5 sm:grid-cols-2" role="list">
+            <li class="flex items-start gap-3">
+              <svg class="icon mt-0.5 text-brass" viewBox="0 0 24 24" aria-hidden="true"><path d="M19 17h2c.6 0 1-.4 1-1v-3c0-.9-.7-1.7-1.5-1.9C18.7 10.6 16 10 16 10s-1.3-1.4-2.2-2.3c-.5-.4-1.1-.7-1.8-.7H5c-.6 0-1.1.4-1.4.9l-1.4 2.9A3.7 3.7 0 0 0 2 12v4c0 .6.4 1 1 1h2"/><circle cx="7" cy="17" r="2"/><path d="M9 17h6"/><circle cx="17" cy="17" r="2"/></svg>
+              <span><b class="font-semibold">Estacionamiento</b><br><span class="text-muted">Vigilado, a 50 m. Valet viernes y sábado en la noche.</span></span>
+            </li>
+            <li class="flex items-start gap-3">
+              <svg class="icon mt-0.5 text-brass" viewBox="0 0 24 24" aria-hidden="true"><circle cx="16" cy="4" r="1"/><path d="m18 19 1-7-6 1"/><path d="m5 8 3-3 5.5 3-2.4 3.5"/><path d="M4.2 14.5a5 5 0 0 0 6.9 6"/><path d="M13.8 17.5a5 5 0 0 0-6.9-6"/></svg>
+              <span><b class="font-semibold">Accesible</b><br><span class="text-muted">Entrada con rampa y baño adaptado.</span></span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- Reservas, grupos y eventos + generador de mensaje. -->
+    <section id="reservas" class="section bg-sand" aria-labelledby="reserve-section-title" data-zone="reservations">
+      <div class="wrap grid gap-12 lg:grid-cols-12 lg:gap-8">
+        <div class="lg:col-span-5">
+          <p class="eyebrow">Reservas, grupos y eventos</p>
+          <h2 id="reserve-section-title" class="text-h2 mt-2">Reserva en un minuto</h2>
+          <p class="mt-4 text-muted measure">Prepara tu mensaje aquí y envíalo por WhatsApp. Te confirmamos la mesa en horario de atención.</p>
+          <ul class="mt-8 space-y-4" role="list">
+            <li class="flex items-start gap-3">
+              <svg class="icon mt-0.5 text-brass" viewBox="0 0 24 24" aria-hidden="true"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.9"/><path d="M16 3.1a4 4 0 0 1 0 7.8"/></svg>
+              <span><b class="font-semibold">Grupos de hasta 40 personas.</b> Para más de 8, escríbenos con 48 horas de anticipación.</span>
+            </li>
+            <li class="flex items-start gap-3">
+              <svg class="icon mt-0.5 text-brass" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 2v4"/><path d="M16 2v4"/><rect width="18" height="18" x="3" y="4" rx="2"/><path d="M3 10h18"/></svg>
+              <span><b class="font-semibold">Salón privado para 24 personas.</b> Cumpleaños, cenas de empresa y celebraciones.</span>
+            </li>
+            <li class="flex items-start gap-3">
+              <svg class="icon mt-0.5 text-brass" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 2v7c0 1.1.9 2 2 2h4a2 2 0 0 0 2-2V2"/><path d="M7 2v20"/><path d="M21 15V2a5 5 0 0 0-5 5v6c0 1.1.9 2 2 2h3Zm0 0v7"/></svg>
+              <span><b class="font-semibold">Menús para eventos</b> desde $25 por persona (ejemplo). Te enviamos opciones por correo.</span>
+            </li>
+            <li class="flex items-start gap-3">
+              <svg class="icon mt-0.5 text-brass" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
+              <span><b class="font-semibold">Sin pagos por adelantado</b> para reservas de menos de 15 personas.</span>
+            </li>
+          </ul>
+        </div>
+
+        <div class="lg:col-span-6 lg:col-start-7">
+          <form id="reserve-form" class="rounded-xl bg-paper p-6 shadow-[var(--shadow-card)] md:p-8" aria-labelledby="reserve-form-title" novalidate>
+            <h3 id="reserve-form-title" class="text-h3">Prepara tu mensaje</h3>
+            <p class="mt-1 text-sm text-muted">Lo envías tú por WhatsApp: desde aquí no se reserva ni se cobra nada.</p>
+
+            <div class="mt-6 grid gap-5 sm:grid-cols-2">
+              <div>
+                <label for="reserve-people" class="field-label">Personas</label>
+                <div class="stepper mt-1.5 flex items-center rounded-xl border border-line bg-paper">
+                  <button type="button" class="icon-btn flex-none" data-step="-1" aria-label="Una persona menos">
+                    <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14"/></svg>
+                  </button>
+                  <input id="reserve-people" class="min-h-12 w-full bg-transparent text-center font-semibold tabular-nums" type="number" inputmode="numeric" min="1" max="40" value="2">
+                  <button type="button" class="icon-btn flex-none" data-step="1" aria-label="Una persona más">
+                    <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14"/><path d="M12 5v14"/></svg>
+                  </button>
+                </div>
+              </div>
+              <div>
+                <label for="reserve-date" class="field-label">Fecha</label>
+                <input id="reserve-date" class="field-input" type="date" aria-describedby="reserve-date-hint">
+                <p id="reserve-date-hint" class="mt-1.5 text-sm text-muted"></p>
+              </div>
+              <div>
+                <label for="reserve-time" class="field-label">Hora</label>
+                <select id="reserve-time" class="field-input"></select>
+              </div>
+              <div>
+                <label for="reserve-occasion" class="field-label">Ocasión <span class="font-normal text-muted">(opcional)</span></label>
+                <select id="reserve-occasion" class="field-input">
+                  <option value="">Sin especificar</option>
+                  <option>Cumpleaños</option>
+                  <option>Aniversario</option>
+                  <option>Reunión de trabajo</option>
+                  <option>Evento privado</option>
+                </select>
+              </div>
+            </div>
+
+            <p class="mt-6 rounded-lg bg-sand p-4 text-[0.9375rem]" aria-live="polite">
+              <span class="font-semibold">Vista previa del mensaje:</span>
+              <span id="reserve-preview" class="mt-1 block font-display italic"></span>
+            </p>
+
+            <div class="mt-5 grid gap-3 sm:grid-cols-[minmax(0,1.5fr)_minmax(0,1fr)]">
+              <a id="reserve-send" class="btn btn-primary" href="https://wa.me/584120000000" target="_blank" rel="noopener">
+                <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/><path d="M9 9.5c0 3 2.5 5.5 5.5 5.5l1.2-1.2-1.8-1-1 .8a4 4 0 0 1-2.5-2.5l.8-1-1-1.8Z"/></svg>
+                Consultar por WhatsApp
+              </a>
+              <a class="btn btn-secondary" href="tel:+584120000000">Prefiero llamar</a>
+            </div>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <!-- Formas de pago (informativo) + preguntas frecuentes. -->
+    <section class="section" aria-label="Pagos y preguntas frecuentes">
+      <div class="wrap grid gap-16 lg:grid-cols-12 lg:gap-8">
+        <div class="lg:col-span-4">
+          <p class="eyebrow">Pagos</p>
+          <h2 class="text-h2 mt-2">Formas de pago en el local</h2>
+          <p class="mt-4 text-muted">Solo informativo: los pagos se hacen en el restaurante, nunca en este sitio.</p>
+          <ul class="mt-6 flex flex-wrap gap-2" role="list">
+            <li class="tag tag--ink">Efectivo en USD</li>
+            <li class="tag tag--ink">Efectivo en Bs.</li>
+            <li class="tag tag--ink">Tarjeta de débito</li>
+            <li class="tag tag--ink">Tarjeta de crédito</li>
+            <li class="tag tag--ink">Pago Móvil</li>
+            <li class="tag tag--ink">Zelle</li>
+          </ul>
+          <p class="mt-4 text-sm text-muted">Precios en USD · IVA incluido · Servicio no incluido.</p>
+        </div>
+
+        <div class="lg:col-span-7 lg:col-start-6">
+          <p class="eyebrow">Preguntas frecuentes</p>
+          <h2 class="text-h2 mt-2">Antes de venir</h2>
+          <div class="mt-6 border-t border-line">
+            <details class="faq">
+              <summary>¿Aceptan reservas?<svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></summary>
+              <p class="faq__content">Sí, por WhatsApp o por teléfono. Para grupos de más de 8 personas te recomendamos escribir con al menos 48 horas de anticipación.</p>
+            </details>
+            <details class="faq">
+              <summary>¿Tienen opciones vegetarianas y sin gluten?<svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></summary>
+              <p class="faq__content">Sí. Cada plato de la carta tiene etiquetas y puedes <a class="link" href="menu.html?f=sin-gluten">filtrar por "Sin gluten"</a> o <a class="link" href="menu.html?f=vegetariano">"Vegetariano"</a>. Nuestra cocina maneja gluten: si eres celíaco, avísanos al llegar para extremar cuidados.</p>
+            </details>
+            <details class="faq">
+              <summary>¿Hay estacionamiento?<svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></summary>
+              <p class="faq__content">Hay un estacionamiento vigilado a 50 m, en la misma Calle París. Viernes y sábado en la noche también tenemos valet.</p>
+            </details>
+            <details class="faq">
+              <summary>¿Se admiten mascotas?<svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></summary>
+              <p class="faq__content">En la terraza, sí. En el salón solo se admiten perros de asistencia.</p>
+            </details>
+            <details class="faq">
+              <summary>¿Hacen delivery o pedidos en línea?<svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></summary>
+              <p class="faq__content">No. Este sitio es nuestra carta de referencia: no se hacen pedidos ni pagos en línea. Si tienes una solicitud especial, escríbenos por WhatsApp.</p>
+            </details>
+            <details class="faq">
+              <summary>¿Cobran servicio?<svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></summary>
+              <p class="faq__content">Los precios incluyen IVA. El servicio (10 %) no está incluido y es opcional (dato de ejemplo).</p>
+            </details>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script>Fogon.layout.renderBottom(document.currentScript);</script>
+  <script src="assets/js/dishes.js"></script>
+  <script src="assets/js/contact.js"></script>
+  <script src="assets/js/ui.js"></script>
+</body>
+</html>

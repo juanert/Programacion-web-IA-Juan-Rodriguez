@@ -1,0 +1,942 @@
+<!DOCTYPE html>
+<html lang="es" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tres en Línea - IA & POO</title>
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            brandDark: '#0b0f19',
+            brandCard: '#111827',
+            brandBorder: '#1f2937',
+            playerX: '#06b6d4', // Cyan
+            playerO: '#ec4899', // Pink
+          },
+          animation: {
+            'bounce-short': 'bounce 0.5s ease-in-out 1',
+            'pulse-subtle': 'pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+          }
+        }
+      }
+    }
+  </script>
+  <!-- Google Fonts: Inter & Outfit -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      background: radial-gradient(circle at 50% 0%, #1e1b4b 0%, #0b0f19 50%, #05070d 100%);
+      min-height: 100vh;
+    }
+    .font-heading {
+      font-family: 'Outfit', sans-serif;
+    }
+    /* Estilos de fichas */
+    .cell-symbol-x {
+      color: #06b6d4;
+      filter: drop-shadow(0 0 12px rgba(6, 182, 212, 0.6));
+    }
+    .cell-symbol-o {
+      color: #ec4899;
+      filter: drop-shadow(0 0 12px rgba(236, 72, 153, 0.6));
+    }
+    /* Celda ganadora */
+    .winning-cell {
+      animation: winnerPulse 1s infinite alternate;
+      border-color: #fbbf24 !important;
+      background: rgba(251, 191, 36, 0.15) !important;
+    }
+    @keyframes winnerPulse {
+      0% {
+        transform: scale(0.98);
+        box-shadow: 0 0 15px rgba(251, 191, 36, 0.4);
+      }
+      100% {
+        transform: scale(1.03);
+        box-shadow: 0 0 25px rgba(251, 191, 36, 0.8);
+      }
+    }
+    /* Línea sutil en botones interactivos */
+    .board-cell {
+      transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .board-cell:not(:disabled):hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px -4px rgba(0, 0, 0, 0.5), 0 0 15px rgba(99, 102, 241, 0.2);
+    }
+    .board-cell:active:not(:disabled) {
+      transform: scale(0.96);
+    }
+  </style>
+</head>
+<body class="text-slate-100 flex flex-col justify-between p-4 sm:p-6 antialiased selection:bg-cyan-500 selection:text-white">
+
+  <!-- CONTENEDOR PRINCIPAL -->
+  <main class="w-full max-w-xl mx-auto flex flex-col items-center flex-grow justify-center">
+
+    <!-- CABECERA -->
+    <header class="text-center mb-6 w-full">
+      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-indigo-950/80 border border-indigo-500/30 text-indigo-300 text-xs font-semibold uppercase tracking-wider mb-2 backdrop-blur-sm">
+        <span class="w-2 h-2 rounded-full bg-cyan-400 animate-pulse"></span>
+        Desarrollado con POO + Tailwind + IA
+      </div>
+      <h1 class="text-3xl sm:text-5xl font-black font-heading tracking-tight bg-gradient-to-r from-cyan-400 via-indigo-300 to-pink-500 bg-clip-text text-transparent">
+        Tres en Línea
+      </h1>
+      <p class="text-slate-400 text-xs sm:text-sm mt-1">
+        Juega contra un amigo o desafía a la Inteligencia Artificial
+      </p>
+    </header>
+
+    <!-- PANEL DE CONTROL & CONFIGURACIÓN -->
+    <section class="w-full bg-slate-900/70 border border-slate-800 backdrop-blur-md rounded-2xl p-4 mb-4 shadow-xl shadow-black/40">
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-sm">
+        <!-- Selector de Modo de Juego -->
+        <div>
+          <label class="block text-xs font-semibold text-slate-400 mb-1.5 uppercase tracking-wide">
+            Modo de Juego
+          </label>
+          <div class="grid grid-cols-2 gap-1.5 bg-slate-950/80 p-1 rounded-xl border border-slate-800">
+            <button id="mode-pve-btn" class="py-1.5 px-3 rounded-lg text-xs font-semibold transition-all duration-200 bg-indigo-600 text-white shadow-md">
+              🤖 vs IA
+            </button>
+            <button id="mode-pvp-btn" class="py-1.5 px-3 rounded-lg text-xs font-semibold transition-all duration-200 text-slate-400 hover:text-white">
+              👥 2 Jugadores
+            </button>
+          </div>
+        </div>
+
+        <!-- Selector de Dificultad IA -->
+        <div id="ai-difficulty-container">
+          <label class="block text-xs font-semibold text-slate-400 mb-1.5 uppercase tracking-wide">
+            Dificultad de la IA
+          </label>
+          <div class="grid grid-cols-3 gap-1 bg-slate-950/80 p-1 rounded-xl border border-slate-800">
+            <button data-difficulty="easy" class="diff-btn py-1.5 px-1.5 text-center rounded-lg text-xs font-medium text-slate-400 hover:text-white transition">
+              Fácil
+            </button>
+            <button data-difficulty="medium" class="diff-btn py-1.5 px-1.5 text-center rounded-lg text-xs font-medium text-slate-400 hover:text-white transition">
+              Medio
+            </button>
+            <button data-difficulty="hard" class="diff-btn py-1.5 px-1.5 text-center rounded-lg text-xs font-semibold text-white bg-pink-600 shadow-md transition">
+              Imbatible
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- MARCADOR DE PUNTOS -->
+    <section class="w-full grid grid-cols-3 gap-2.5 sm:gap-3 mb-4">
+      <!-- Jugador X -->
+      <div id="card-player-x" class="bg-slate-900/60 border-2 border-cyan-500/30 rounded-xl p-3 text-center transition-all duration-300">
+        <div class="flex items-center justify-center gap-1.5 text-playerX font-bold text-xs sm:text-sm">
+          <span class="w-2.5 h-2.5 rounded-full bg-cyan-400"></span>
+          <span id="label-player-x">Jugador (X)</span>
+        </div>
+        <div id="score-player-x" class="text-2xl sm:text-3xl font-black font-heading mt-0.5 text-cyan-300">
+          0
+        </div>
+      </div>
+
+      <!-- Empates -->
+      <div class="bg-slate-900/60 border border-slate-800 rounded-xl p-3 text-center">
+        <div class="text-slate-400 font-bold text-xs sm:text-sm">
+          Empates
+        </div>
+        <div id="score-draws" class="text-2xl sm:text-3xl font-black font-heading mt-0.5 text-slate-300">
+          0
+        </div>
+      </div>
+
+      <!-- Jugador O / IA -->
+      <div id="card-player-o" class="bg-slate-900/60 border-2 border-slate-800 rounded-xl p-3 text-center transition-all duration-300">
+        <div class="flex items-center justify-center gap-1.5 text-playerO font-bold text-xs sm:text-sm">
+          <span class="w-2.5 h-2.5 rounded-full bg-pink-400"></span>
+          <span id="label-player-o">IA (O)</span>
+        </div>
+        <div id="score-player-o" class="text-2xl sm:text-3xl font-black font-heading mt-0.5 text-pink-300">
+          0
+        </div>
+      </div>
+    </section>
+
+    <!-- ESTADO DEL TURNO / MENSAJES -->
+    <div id="turn-banner" class="w-full text-center py-2 px-4 rounded-xl mb-4 bg-slate-900/90 border border-slate-800 flex items-center justify-center gap-2 shadow-inner">
+      <span id="turn-indicator-dot" class="w-2.5 h-2.5 rounded-full bg-cyan-400 animate-pulse"></span>
+      <span id="turn-text" class="text-sm sm:text-base font-semibold text-slate-200">
+        Turno de: <span class="text-cyan-400 font-bold">X</span>
+      </span>
+    </div>
+
+    <!-- TABLERO DE JUEGO (GRID 3x3) -->
+    <div class="relative w-full aspect-square max-w-[360px] sm:max-w-[390px] p-3 bg-slate-900/80 border border-slate-800/80 rounded-3xl shadow-2xl shadow-indigo-950/50 backdrop-blur-xl">
+      <div id="board-grid" class="grid grid-cols-3 grid-rows-3 gap-2.5 sm:gap-3 w-full h-full">
+        <!-- 9 Celdas generadas o mapeadas -->
+        <button data-index="0" class="board-cell bg-slate-950/70 border border-slate-800/80 rounded-2xl flex items-center justify-center font-heading text-4xl sm:text-5xl font-extrabold focus:outline-none" aria-label="Casilla 0"></button>
+        <button data-index="1" class="board-cell bg-slate-950/70 border border-slate-800/80 rounded-2xl flex items-center justify-center font-heading text-4xl sm:text-5xl font-extrabold focus:outline-none" aria-label="Casilla 1"></button>
+        <button data-index="2" class="board-cell bg-slate-950/70 border border-slate-800/80 rounded-2xl flex items-center justify-center font-heading text-4xl sm:text-5xl font-extrabold focus:outline-none" aria-label="Casilla 2"></button>
+        <button data-index="3" class="board-cell bg-slate-950/70 border border-slate-800/80 rounded-2xl flex items-center justify-center font-heading text-4xl sm:text-5xl font-extrabold focus:outline-none" aria-label="Casilla 3"></button>
+        <button data-index="4" class="board-cell bg-slate-950/70 border border-slate-800/80 rounded-2xl flex items-center justify-center font-heading text-4xl sm:text-5xl font-extrabold focus:outline-none" aria-label="Casilla 4"></button>
+        <button data-index="5" class="board-cell bg-slate-950/70 border border-slate-800/80 rounded-2xl flex items-center justify-center font-heading text-4xl sm:text-5xl font-extrabold focus:outline-none" aria-label="Casilla 5"></button>
+        <button data-index="6" class="board-cell bg-slate-950/70 border border-slate-800/80 rounded-2xl flex items-center justify-center font-heading text-4xl sm:text-5xl font-extrabold focus:outline-none" aria-label="Casilla 6"></button>
+        <button data-index="7" class="board-cell bg-slate-950/70 border border-slate-800/80 rounded-2xl flex items-center justify-center font-heading text-4xl sm:text-5xl font-extrabold focus:outline-none" aria-label="Casilla 7"></button>
+        <button data-index="8" class="board-cell bg-slate-950/70 border border-slate-800/80 rounded-2xl flex items-center justify-center font-heading text-4xl sm:text-5xl font-extrabold focus:outline-none" aria-label="Casilla 8"></button>
+      </div>
+    </div>
+
+    <!-- BOTONES DE ACCIÓN & CONTROL -->
+    <footer class="w-full flex items-center justify-center gap-3 mt-5">
+      <button id="btn-restart-round" class="flex-1 max-w-[180px] py-2.5 px-4 rounded-xl text-xs sm:text-sm font-bold bg-slate-800/90 hover:bg-slate-700/90 border border-slate-700 text-slate-200 transition shadow-lg hover:shadow-cyan-500/10 flex items-center justify-center gap-2">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path>
+        </svg>
+        Nueva Ronda
+      </button>
+
+      <button id="btn-reset-all" class="flex-1 max-w-[180px] py-2.5 px-4 rounded-xl text-xs sm:text-sm font-bold bg-rose-950/40 hover:bg-rose-900/50 border border-rose-800/50 text-rose-300 transition shadow-lg flex items-center justify-center gap-2">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path>
+        </svg>
+        Reiniciar Todo
+      </button>
+
+      <!-- Botón de Sonido -->
+      <button id="btn-toggle-sound" class="p-2.5 rounded-xl bg-slate-800/90 hover:bg-slate-700 border border-slate-700 text-slate-300 transition" title="Activar/Silenciar sonido">
+        <svg id="sound-icon-on" class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.536 8.464a5 5 0 010 7.072m2.828-9.9a9 9 0 010 12.728M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z"></path>
+        </svg>
+        <svg id="sound-icon-off" class="w-5 h-5 hidden text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z"></path>
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2"></path>
+        </svg>
+      </button>
+    </footer>
+
+    <!-- MODAL / MENSAJE DE RESULTADO -->
+    <div id="result-modal" class="fixed inset-0 bg-black/75 backdrop-blur-sm z-50 flex items-center justify-center p-4 hidden opacity-0 transition-opacity duration-300">
+      <div id="modal-content" class="bg-slate-900 border border-slate-700/80 rounded-3xl p-6 sm:p-8 max-w-sm w-full text-center shadow-2xl transform scale-95 transition-transform duration-300">
+        <div id="modal-icon" class="text-5xl mb-3">🎉</div>
+        <h3 id="modal-title" class="text-2xl font-black font-heading mb-1 text-white">¡Victoria!</h3>
+        <p id="modal-subtitle" class="text-sm text-slate-300 mb-6">El Jugador X se lleva la ronda.</p>
+        <button id="modal-btn-next" class="w-full py-3 px-6 rounded-xl font-bold text-white bg-gradient-to-r from-cyan-500 to-indigo-600 hover:from-cyan-400 hover:to-indigo-500 shadow-lg shadow-cyan-500/25 transition">
+          Jugar otra ronda
+        </button>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- ================================================================= -->
+  <!-- LÓGICA DEL JUEGO BASADA EN PROGRAMACIÓN ORIENTADA A OBJETOS (POO) -->
+  <!-- ================================================================= -->
+  <script>
+    /**
+     * CLASE: SoundManager
+     * Responsabilidad: Generar efectos de sonido mediante la Web Audio API nativa.
+     */
+    class SoundManager {
+      constructor() {
+        this.ctx = null;
+        this.enabled = true;
+      }
+
+      init() {
+        if (!this.ctx) {
+          const AudioContext = window.AudioContext || window.webkitAudioContext;
+          if (AudioContext) {
+            this.ctx = new AudioContext();
+          }
+        }
+      }
+
+      playTone(freq, type = 'sine', duration = 0.15, gainVal = 0.1) {
+        if (!this.enabled) return;
+        try {
+          this.init();
+          if (!this.ctx) return;
+          if (this.ctx.state === 'suspended') {
+            this.ctx.resume();
+          }
+
+          const osc = this.ctx.createOscillator();
+          const gain = this.ctx.createGain();
+
+          osc.type = type;
+          osc.frequency.setValueAtTime(freq, this.ctx.currentTime);
+
+          gain.gain.setValueAtTime(gainVal, this.ctx.currentTime);
+          gain.gain.exponentialRampToValueAtTime(0.0001, this.ctx.currentTime + duration);
+
+          osc.connect(gain);
+          gain.connect(this.ctx.destination);
+
+          osc.start();
+          osc.stop(this.ctx.currentTime + duration);
+        } catch (e) {
+          // Audio bloqueado o no soportado en segundo plano
+        }
+      }
+
+      playMove(symbol) {
+        if (symbol === 'X') {
+          this.playTone(520, 'sine', 0.1, 0.15);
+        } else {
+          this.playTone(380, 'triangle', 0.12, 0.15);
+        }
+      }
+
+      playWin() {
+        if (!this.enabled) return;
+        const notes = [440, 554, 659, 880]; // A major arpeggio
+        notes.forEach((f, idx) => {
+          setTimeout(() => this.playTone(f, 'triangle', 0.2, 0.2), idx * 100);
+        });
+      }
+
+      playDraw() {
+        if (!this.enabled) return;
+        const notes = [400, 350, 300];
+        notes.forEach((f, idx) => {
+          setTimeout(() => this.playTone(f, 'sawtooth', 0.15, 0.08), idx * 120);
+        });
+      }
+
+      toggle() {
+        this.enabled = !this.enabled;
+        return this.enabled;
+      }
+    }
+
+    /**
+     * CLASE: Board (Tablero)
+     * Responsabilidad: Encapsular el estado de las 9 casillas y la lógica matemática de victoria/empate.
+     */
+    class Board {
+      static WINNING_COMBINATIONS = [
+        [0, 1, 2], [3, 4, 5], [6, 7, 8], // Filas
+        [0, 3, 6], [1, 4, 7], [2, 5, 8], // Columnas
+        [0, 4, 8], [2, 4, 6]             // Diagonales
+      ];
+
+      constructor() {
+        this.reset();
+      }
+
+      reset() {
+        this.grid = Array(9).fill(null);
+      }
+
+      isAvailable(index) {
+        return this.grid[index] === null;
+      }
+
+      setMove(index, symbol) {
+        if (this.isAvailable(index)) {
+          this.grid[index] = symbol;
+          return true;
+        }
+        return false;
+      }
+
+      undoMove(index) {
+        this.grid[index] = null;
+      }
+
+      getAvailableMoves() {
+        const moves = [];
+        for (let i = 0; i < 9; i++) {
+          if (this.grid[i] === null) moves.push(i);
+        }
+        return moves;
+      }
+
+      checkWinner() {
+        for (const combination of Board.WINNING_COMBINATIONS) {
+          const [a, b, c] = combination;
+          if (
+            this.grid[a] &&
+            this.grid[a] === this.grid[b] &&
+            this.grid[a] === this.grid[c]
+          ) {
+            return {
+              winner: this.grid[a],
+              line: combination
+            };
+          }
+        }
+        return null;
+      }
+
+      isFull() {
+        return this.grid.every(cell => cell !== null);
+      }
+
+      clone() {
+        const newBoard = new Board();
+        newBoard.grid = [...this.grid];
+        return newBoard;
+      }
+    }
+
+    /**
+     * CLASE BASE: Player (Jugador)
+     * Principio POO: Herencia y Polimorfismo
+     */
+    class Player {
+      constructor(symbol, name) {
+        this.symbol = symbol;
+        this.name = name;
+        this.score = 0;
+        this.isAI = false;
+      }
+
+      incrementScore() {
+        this.score++;
+      }
+
+      resetScore() {
+        this.score = 0;
+      }
+    }
+
+    /**
+     * CLASE HIJA: HumanPlayer
+     */
+    class HumanPlayer extends Player {
+      constructor(symbol, name = 'Jugador') {
+        super(symbol, name);
+        this.isAI = false;
+      }
+    }
+
+    /**
+     * CLASE HIJA: AIPlayer
+     * Contiene la IA con Algoritmo Minimax, modos Fácil, Medio e Imbatible.
+     */
+    class AIPlayer extends Player {
+      constructor(symbol = 'O', name = 'IA', difficulty = 'hard') {
+        super(symbol, name);
+        this.isAI = true;
+        this.difficulty = difficulty; // 'easy', 'medium', 'hard'
+      }
+
+      setDifficulty(diff) {
+        this.difficulty = diff;
+      }
+
+      // Calcula el siguiente movimiento según la dificultad
+      calculateMove(board, opponentSymbol) {
+        const available = board.getAvailableMoves();
+        if (available.length === 0) return null;
+
+        // MODO FÁCIL: Movimiento aleatorio
+        if (this.difficulty === 'easy') {
+          return available[Math.floor(Math.random() * available.length)];
+        }
+
+        // MODO MEDIO: Gana o bloquea si hay oportunidad inmediata; de lo contrario aleatorio
+        if (this.difficulty === 'medium') {
+          // 1. ¿Puedo ganar en este turno?
+          for (const move of available) {
+            board.setMove(move, this.symbol);
+            const win = board.checkWinner();
+            board.undoMove(move);
+            if (win && win.winner === this.symbol) return move;
+          }
+
+          // 2. ¿El oponente va a ganar en el siguiente? Bloquearlo
+          for (const move of available) {
+            board.setMove(move, opponentSymbol);
+            const win = board.checkWinner();
+            board.undoMove(move);
+            if (win && win.winner === opponentSymbol) return move;
+          }
+
+          // 3. Tomar centro si está libre con 50% probabilidad
+          if (available.includes(4) && Math.random() > 0.5) {
+            return 4;
+          }
+
+          // 4. Aleatorio
+          return available[Math.floor(Math.random() * available.length)];
+        }
+
+        // MODO IMBATIBLE: Algoritmo Minimax completo
+        return this.minimaxBestMove(board, opponentSymbol);
+      }
+
+      /**
+       * ALGORITMO MINIMAX:
+       * Explora recursivamente todos los estados futuros del tablero
+       * asignando un puntaje exacto para garantizar que la IA nunca pierda.
+       */
+      minimaxBestMove(board, humanSymbol) {
+        let bestScore = -Infinity;
+        let bestMove = null;
+        const available = board.getAvailableMoves();
+
+        // Optimización inicial: si el centro está disponible en los primeros turnos
+        if (available.includes(4) && available.length >= 8) {
+          return 4;
+        }
+
+        for (const move of available) {
+          board.setMove(move, this.symbol);
+          const score = this.minimax(board, 0, false, humanSymbol, -Infinity, Infinity);
+          board.undoMove(move);
+
+          if (score > bestScore) {
+            bestScore = score;
+            bestMove = move;
+          }
+        }
+
+        return bestMove !== null ? bestMove : available[0];
+      }
+
+      minimax(board, depth, isMaximizing, humanSymbol, alpha, beta) {
+        const winResult = board.checkWinner();
+
+        // Estados terminales
+        if (winResult) {
+          if (winResult.winner === this.symbol) return 10 - depth; // Gana IA
+          if (winResult.winner === humanSymbol) return depth - 10; // Gana Humano
+        }
+
+        if (board.isFull()) {
+          return 0; // Empate
+        }
+
+        const available = board.getAvailableMoves();
+
+        if (isMaximizing) {
+          let maxEval = -Infinity;
+          for (const move of available) {
+            board.setMove(move, this.symbol);
+            const evaluation = this.minimax(board, depth + 1, false, humanSymbol, alpha, beta);
+            board.undoMove(move);
+            maxEval = Math.max(maxEval, evaluation);
+            alpha = Math.max(alpha, evaluation);
+            if (beta <= alpha) break; // Poda alfa-beta
+          }
+          return maxEval;
+        } else {
+          let minEval = Infinity;
+          for (const move of available) {
+            board.setMove(move, humanSymbol);
+            const evaluation = this.minimax(board, depth + 1, true, humanSymbol, alpha, beta);
+            board.undoMove(move);
+            minEval = Math.min(minEval, evaluation);
+            beta = Math.min(beta, evaluation);
+            if (beta <= alpha) break; // Poda alfa-beta
+          }
+          return minEval;
+        }
+      }
+    }
+
+    /**
+     * CLASE: TicTacToeGame (Controlador del Juego)
+     * Responsabilidad: Coordinar jugadores, turnos, tablero y estados del juego.
+     */
+    class TicTacToeGame {
+      constructor(soundManager) {
+        this.sound = soundManager;
+        this.board = new Board();
+        this.gameMode = 'pve'; // 'pve' (Player vs AI) o 'pvp' (Player vs Player)
+        this.drawScore = 0;
+        this.isRoundOver = false;
+        this.isProcessingAI = false;
+
+        this.initPlayers();
+        this.currentTurnSymbol = 'X';
+      }
+
+      initPlayers() {
+        this.playerX = new HumanPlayer('X', this.gameMode === 'pve' ? 'Tú (X)' : 'Jugador 1 (X)');
+        if (this.gameMode === 'pve') {
+          this.playerO = new AIPlayer('O', 'IA (O)', 'hard');
+        } else {
+          this.playerO = new HumanPlayer('O', 'Jugador 2 (O)');
+        }
+      }
+
+      setMode(mode) {
+        if (this.gameMode === mode) return;
+        this.gameMode = mode;
+        this.resetAllScores();
+        this.initPlayers();
+        this.startNewRound();
+      }
+
+      setAIDifficulty(diff) {
+        if (this.playerO instanceof AIPlayer) {
+          this.playerO.setDifficulty(diff);
+        }
+      }
+
+      getCurrentPlayer() {
+        return this.currentTurnSymbol === 'X' ? this.playerX : this.playerO;
+      }
+
+      getOpponentPlayer() {
+        return this.currentTurnSymbol === 'X' ? this.playerO : this.playerX;
+      }
+
+      makeMove(index) {
+        if (this.isRoundOver) return null;
+        if (!this.board.isAvailable(index)) return null;
+
+        const movedSymbol = this.currentTurnSymbol;
+        this.board.setMove(index, movedSymbol);
+        this.sound.playMove(movedSymbol);
+
+        // Comprobar estado tras el movimiento
+        const win = this.board.checkWinner();
+        if (win) {
+          this.isRoundOver = true;
+          const winnerPlayer = this.getCurrentPlayer();
+          winnerPlayer.incrementScore();
+          this.sound.playWin();
+          return { status: 'win', winner: winnerPlayer, symbol: movedSymbol, line: win.line, index };
+        }
+
+        if (this.board.isFull()) {
+          this.isRoundOver = true;
+          this.drawScore++;
+          this.sound.playDraw();
+          return { status: 'draw', symbol: movedSymbol, index };
+        }
+
+        // Alternar turno
+        this.currentTurnSymbol = this.currentTurnSymbol === 'X' ? 'O' : 'X';
+        return { status: 'next', currentTurn: this.currentTurnSymbol, symbol: movedSymbol, index };
+      }
+
+      startNewRound() {
+        this.board.reset();
+        this.isRoundOver = false;
+        this.isProcessingAI = false;
+        this.currentTurnSymbol = 'X'; // Comienza X
+      }
+
+      resetAllScores() {
+        this.playerX.resetScore();
+        this.playerO.resetScore();
+        this.drawScore = 0;
+      }
+    }
+
+    /**
+     * CLASE: UIController (Interfaz de Usuario)
+     * Responsabilidad: Manipulación del DOM, eventos de escucha y renderizado visual.
+     */
+    class UIController {
+      constructor(game, sound) {
+        this.game = game;
+        this.sound = sound;
+
+        // Elementos DOM
+        this.cells = Array.from(document.querySelectorAll('.board-cell'));
+        this.scoreXEl = document.getElementById('score-player-x');
+        this.scoreOEl = document.getElementById('score-player-o');
+        this.scoreDrawsEl = document.getElementById('score-draws');
+        this.labelXEl = document.getElementById('label-player-x');
+        this.labelOEl = document.getElementById('label-player-o');
+        this.turnTextEl = document.getElementById('turn-text');
+        this.turnIndicatorDot = document.getElementById('turn-indicator-dot');
+        this.cardXEl = document.getElementById('card-player-x');
+        this.cardOEl = document.getElementById('card-player-o');
+
+        // Botones de Modo
+        this.pveBtn = document.getElementById('mode-pve-btn');
+        this.pvpBtn = document.getElementById('mode-pvp-btn');
+        this.diffContainer = document.getElementById('ai-difficulty-container');
+        this.diffButtons = Array.from(document.querySelectorAll('.diff-btn'));
+
+        // Botones de Control
+        this.btnRestartRound = document.getElementById('btn-restart-round');
+        this.btnResetAll = document.getElementById('btn-reset-all');
+        this.btnToggleSound = document.getElementById('btn-toggle-sound');
+        this.soundIconOn = document.getElementById('sound-icon-on');
+        this.soundIconOff = document.getElementById('sound-icon-off');
+
+        // Modal
+        this.modal = document.getElementById('result-modal');
+        this.modalContent = document.getElementById('modal-content');
+        this.modalTitle = document.getElementById('modal-title');
+        this.modalSubtitle = document.getElementById('modal-subtitle');
+        this.modalIcon = document.getElementById('modal-icon');
+        this.modalBtnNext = document.getElementById('modal-btn-next');
+
+        this.bindEvents();
+        this.updateView();
+      }
+
+      bindEvents() {
+        // Clics en el tablero
+        this.cells.forEach(cell => {
+          cell.addEventListener('click', (e) => {
+            const index = parseInt(e.currentTarget.dataset.index, 10);
+            this.handleCellClick(index);
+          });
+        });
+
+        // Cambio de Modo
+        this.pveBtn.addEventListener('click', () => this.switchMode('pve'));
+        this.pvpBtn.addEventListener('click', () => this.switchMode('pvp'));
+
+        // Cambio de Dificultad
+        this.diffButtons.forEach(btn => {
+          btn.addEventListener('click', (e) => {
+            const diff = e.currentTarget.dataset.difficulty;
+            this.setDifficulty(diff);
+          });
+        });
+
+        // Controles de reinicio
+        this.btnRestartRound.addEventListener('click', () => {
+          this.game.startNewRound();
+          this.hideModal();
+          this.updateView();
+        });
+
+        this.btnResetAll.addEventListener('click', () => {
+          this.game.resetAllScores();
+          this.game.startNewRound();
+          this.hideModal();
+          this.updateView();
+        });
+
+        this.modalBtnNext.addEventListener('click', () => {
+          this.game.startNewRound();
+          this.hideModal();
+          this.updateView();
+        });
+
+        // Control de Sonido
+        this.btnToggleSound.addEventListener('click', () => {
+          const isSoundOn = this.sound.toggle();
+          this.soundIconOn.classList.toggle('hidden', !isSoundOn);
+          this.soundIconOff.classList.toggle('hidden', isSoundOn);
+        });
+      }
+
+      handleCellClick(index) {
+        if (this.game.isRoundOver || this.game.isProcessingAI) return;
+        if (this.game.gameMode === 'pve' && this.game.getCurrentPlayer().isAI) return;
+
+        const result = this.game.makeMove(index);
+        if (!result) return;
+
+        this.renderMove(index, result.symbol);
+        this.processGameResult(result);
+
+        // Si es turno de la IA y el juego continúa
+        if (
+          !this.game.isRoundOver &&
+          this.game.gameMode === 'pve' &&
+          this.game.getCurrentPlayer().isAI
+        ) {
+          this.triggerAIMove();
+        }
+      }
+
+      triggerAIMove() {
+        this.game.isProcessingAI = true;
+        this.turnTextEl.innerHTML = `Pensando jugada... <span class="animate-pulse">🤖</span>`;
+
+        // Pequeño retardo para dar sensación humana/IA
+        setTimeout(() => {
+          if (this.game.isRoundOver || this.game.currentTurnSymbol !== 'O') {
+            this.game.isProcessingAI = false;
+            return;
+          }
+
+          const aiPlayer = this.game.playerO;
+          const bestIndex = aiPlayer.calculateMove(this.game.board, 'X');
+
+          this.game.isProcessingAI = false;
+
+          if (bestIndex !== null) {
+            const result = this.game.makeMove(bestIndex);
+            if (result) {
+              this.renderMove(bestIndex, result.symbol);
+              this.processGameResult(result);
+            }
+          }
+        }, 400);
+      }
+
+      processGameResult(result) {
+        if (result.status === 'win') {
+          this.highlightWinningLine(result.line);
+          this.updateScores();
+          this.showModalWin(result.winner);
+        } else if (result.status === 'draw') {
+          this.updateScores();
+          this.showModalDraw();
+        } else {
+          this.updateTurnDisplay();
+        }
+      }
+
+      renderMove(index, symbol) {
+        const cell = this.cells[index];
+        cell.disabled = true;
+
+        if (symbol === 'X') {
+          cell.innerHTML = `
+            <svg class="w-12 h-12 sm:w-16 sm:h-16 cell-symbol-x transform transition-transform duration-200 scale-90 hover:scale-100" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="18" y1="6" x2="6" y2="18"></line>
+              <line x1="6" y1="6" x2="18" y2="18"></line>
+            </svg>
+          `;
+        } else {
+          cell.innerHTML = `
+            <svg class="w-12 h-12 sm:w-16 sm:h-16 cell-symbol-o transform transition-transform duration-200 scale-90 hover:scale-100" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="9"></circle>
+            </svg>
+          `;
+        }
+      }
+
+      highlightWinningLine(line) {
+        line.forEach(idx => {
+          this.cells[idx].classList.add('winning-cell');
+        });
+      }
+
+      updateScores() {
+        this.scoreXEl.textContent = this.game.playerX.score;
+        this.scoreOEl.textContent = this.game.playerO.score;
+        this.scoreDrawsEl.textContent = this.game.drawScore;
+      }
+
+      updateTurnDisplay() {
+        const isX = this.game.currentTurnSymbol === 'X';
+        const currentPlayer = this.game.getCurrentPlayer();
+
+        this.turnTextEl.innerHTML = `Turno de: <span class="${isX ? 'text-cyan-400' : 'text-pink-400'} font-bold">${currentPlayer.name}</span>`;
+
+        if (isX) {
+          this.turnIndicatorDot.className = 'w-2.5 h-2.5 rounded-full bg-cyan-400 animate-pulse';
+          this.cardXEl.classList.add('border-cyan-500/80', 'bg-cyan-950/20');
+          this.cardOEl.classList.remove('border-pink-500/80', 'bg-pink-950/20');
+          this.cardOEl.classList.add('border-slate-800');
+        } else {
+          this.turnIndicatorDot.className = 'w-2.5 h-2.5 rounded-full bg-pink-400 animate-pulse';
+          this.cardOEl.classList.add('border-pink-500/80', 'bg-pink-950/20');
+          this.cardOEl.classList.remove('border-slate-800');
+          this.cardXEl.classList.remove('border-cyan-500/80', 'bg-cyan-950/20');
+          this.cardXEl.classList.add('border-slate-800');
+        }
+      }
+
+      updateView() {
+        // Limpiar casillas
+        this.cells.forEach(cell => {
+          cell.innerHTML = '';
+          cell.disabled = false;
+          cell.className = 'board-cell bg-slate-950/70 border border-slate-800/80 rounded-2xl flex items-center justify-center font-heading text-4xl sm:text-5xl font-extrabold focus:outline-none';
+        });
+
+        // Actualizar etiquetas
+        if (this.game.gameMode === 'pve') {
+          this.labelXEl.textContent = 'Tú (X)';
+          this.labelOEl.textContent = 'IA (O)';
+        } else {
+          this.labelXEl.textContent = 'Jugador 1 (X)';
+          this.labelOEl.textContent = 'Jugador 2 (O)';
+        }
+
+        this.updateScores();
+        this.updateTurnDisplay();
+      }
+
+      switchMode(mode) {
+        if (mode === 'pve') {
+          this.pveBtn.className = 'py-1.5 px-3 rounded-lg text-xs font-semibold transition-all duration-200 bg-indigo-600 text-white shadow-md';
+          this.pvpBtn.className = 'py-1.5 px-3 rounded-lg text-xs font-semibold transition-all duration-200 text-slate-400 hover:text-white';
+          this.diffContainer.classList.remove('opacity-40', 'pointer-events-none');
+        } else {
+          this.pvpBtn.className = 'py-1.5 px-3 rounded-lg text-xs font-semibold transition-all duration-200 bg-indigo-600 text-white shadow-md';
+          this.pveBtn.className = 'py-1.5 px-3 rounded-lg text-xs font-semibold transition-all duration-200 text-slate-400 hover:text-white';
+          this.diffContainer.classList.add('opacity-40', 'pointer-events-none');
+        }
+
+        this.game.setMode(mode);
+        this.updateView();
+      }
+
+      setDifficulty(diff) {
+        this.diffButtons.forEach(btn => {
+          if (btn.dataset.difficulty === diff) {
+            btn.className = 'diff-btn py-1.5 px-1.5 text-center rounded-lg text-xs font-semibold text-white bg-pink-600 shadow-md transition';
+          } else {
+            btn.className = 'diff-btn py-1.5 px-1.5 text-center rounded-lg text-xs font-medium text-slate-400 hover:text-white transition';
+          }
+        });
+
+        this.game.setAIDifficulty(diff);
+      }
+
+      showModalWin(winner) {
+        setTimeout(() => {
+          const isX = winner.symbol === 'X';
+          this.modalIcon.textContent = isX ? '🏆' : (this.game.gameMode === 'pve' ? '🤖' : '🎉');
+          this.modalTitle.textContent = `¡Victoria para ${winner.name}!`;
+          this.modalSubtitle.textContent = `Gran partida. El jugador ${winner.symbol} dominó el tablero.`;
+          this.showModal();
+        }, 500);
+      }
+
+      showModalDraw() {
+        setTimeout(() => {
+          this.modalIcon.textContent = '🤝';
+          this.modalTitle.textContent = '¡Empate!';
+          this.modalSubtitle.textContent = 'Ningún jugador logró alinear tres fichas. ¡Estuvo reñido!';
+          this.showModal();
+        }, 500);
+      }
+
+      showModal() {
+        this.modal.classList.remove('hidden');
+        setTimeout(() => {
+          this.modal.classList.remove('opacity-0');
+          this.modalContent.classList.remove('scale-95');
+          this.modalContent.classList.add('scale-100');
+        }, 10);
+      }
+
+      hideModal() {
+        this.modalContent.classList.remove('scale-100');
+        this.modalContent.classList.add('scale-95');
+        this.modal.classList.add('opacity-0');
+        setTimeout(() => {
+          this.modal.classList.add('hidden');
+        }, 200);
+      }
+    }
+
+    // =================================================================
+    // INICIALIZACIÓN DE LA APLICACIÓN
+    // =================================================================
+    document.addEventListener('DOMContentLoaded', () => {
+      const soundManager = new SoundManager();
+      const game = new TicTacToeGame(soundManager);
+      const ui = new UIController(game, soundManager);
+    });
+  </script>
+</body>
+</html>

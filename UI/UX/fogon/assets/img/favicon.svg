@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120">
+  <!-- Favicon de Fogón: el mismo isotipo, con colores fijos y versión oscura. -->
+  <style>
+    .mark { color: #1F1A17; }
+    .ember { fill: #B4472C; }
+    @media (prefers-color-scheme: dark) {
+      .mark { color: #F3ECE2; }
+      .ember { fill: #E07A5A; }
+    }
+  </style>
+  <g class="mark">
+    <circle cx="60" cy="60" r="52" fill="none" stroke="currentColor" stroke-width="6"/>
+    <path fill="currentColor" d="M60 28 C60 28 80 48 80 66 A20 20 0 0 1 40 66 C40 54 48 46 52 40 C53 48 56 52 60 54 C58 44 56 36 60 28 Z"/>
+    <path class="ember" d="M60 58 C64 64 68 68 68 73 A8 8 0 0 1 52 73 C52 68 56 64 60 58 Z"/>
+    <line x1="44" y1="96" x2="76" y2="96" stroke="currentColor" stroke-width="6" stroke-linecap="round"/>
+  </g>
+</svg>

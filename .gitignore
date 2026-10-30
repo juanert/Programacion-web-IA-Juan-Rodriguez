@@ -4,3 +4,5 @@
 oculto/
 #Esto sirve para ignorar un archivo en especifico
 hola.txt
+.env
+node_modules/

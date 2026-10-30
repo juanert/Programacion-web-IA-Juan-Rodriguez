@@ -1,0 +1,281 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Fogón · Cocina de leña en Las Mercedes, Caracas</title>
+  <meta name="description" content="Cocina venezolana contemporánea a la leña en Las Mercedes, Caracas. Consulta la carta con precios, el horario y reserva por WhatsApp.">
+  <meta name="theme-color" content="#FAF6F0">
+  <meta property="og:type" content="restaurant">
+  <meta property="og:title" content="Fogón · Cocina de leña">
+  <meta property="og:description" content="Sabores que nacen del fuego. Carta con precios, horario y reservas por WhatsApp.">
+  <meta property="og:locale" content="es_VE">
+  <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+
+  <!-- Tema y loader se deciden antes de pintar (evita destellos). -->
+  <script src="assets/js/head.js"></script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400..600;1,9..144,400&family=Inter:wght@400..600&display=swap">
+  <link rel="stylesheet" href="assets/css/styles.css">
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4.1.11"></script>
+
+  <!-- Datos estructurados para buscadores (schema.org/Restaurant). Datos de ejemplo. -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Restaurant",
+    "name": "Fogón — Cocina de leña",
+    "servesCuisine": "Venezolana contemporánea",
+    "priceRange": "$$",
+    "telephone": "+584120000000",
+    "email": "hola@fogon.example",
+    "hasMenu": "menu.html",
+    "acceptsReservations": "True",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Calle París, Las Mercedes",
+      "addressLocality": "Caracas",
+      "addressCountry": "VE"
+    },
+    "openingHoursSpecification": [
+      { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Tuesday", "Wednesday", "Thursday"], "opens": "12:00", "closes": "22:00" },
+      { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Friday", "Saturday"], "opens": "12:00", "closes": "23:30" },
+      { "@type": "OpeningHoursSpecification", "dayOfWeek": "Sunday", "opens": "12:00", "closes": "18:00" }
+    ]
+  }
+  </script>
+</head>
+<body data-page="inicio" data-header="overlay">
+  <!-- Datos, utilidades y parte superior común (loader + encabezado). -->
+  <script src="assets/js/data.js"></script>
+  <script src="assets/js/core.js"></script>
+  <script src="assets/js/layout.js"></script>
+
+  <main id="contenido" tabindex="-1">
+
+    <!-- =========================================================
+         1. HERO — zona más caliente del mapa de calor.
+         Qué es (titular ≤ 6 palabras) · estado · "Ver la carta" · contacto.
+         ========================================================= -->
+    <section class="hero" data-hero data-zone="hero" aria-labelledby="hero-title">
+      <div class="hero__media" data-parallax>
+        <div class="absolute inset-0" data-photo="hero"></div>
+      </div>
+      <div class="hero__scrim" aria-hidden="true"></div>
+
+      <div class="hero__content wrap pt-28 pb-16 md:pb-24 lg:py-28">
+        <div class="max-w-[40rem]">
+          <div class="mb-6 max-w-md" data-announcement="photo"></div>
+          <p class="eyebrow eyebrow--on-photo reveal">Cocina de leña · Caracas</p>
+          <h1 id="hero-title" class="text-display mt-3 reveal" style="--i:1">Sabores que nacen del fuego</h1>
+          <p class="mt-5 max-w-[34rem] text-lg leading-relaxed text-cream/90 reveal" style="--i:2">
+            Cocina venezolana contemporánea, hecha despacio sobre leña de guayabo y con el producto de nuestros vecinos.
+          </p>
+          <div class="mt-6 reveal" style="--i:3" data-status data-status-pill></div>
+          <div class="mt-7 flex flex-col gap-2 sm:flex-row sm:items-center sm:gap-6 reveal" style="--i:4" data-hero-actions>
+            <a class="btn btn-primary w-full sm:w-auto" href="menu.html">
+              Ver la carta
+              <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+            </a>
+            <a class="link-arrow link-arrow--on-photo justify-center sm:justify-start" href="https://wa.me/584120000000?text=Hola%2C%20tengo%20una%20consulta%20sobre%20Fog%C3%B3n." target="_blank" rel="noopener">
+              <span>Escríbenos por WhatsApp</span>
+              <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================
+         2. DATOS RÁPIDOS — horario de hoy, ubicación y contacto.
+         Se superpone al hero (rompe la cuadrícula a propósito).
+         ========================================================= -->
+    <section class="relative z-10" aria-label="Información rápida" data-zone="quick-info">
+      <div class="wrap">
+        <div class="-mt-8 md:-mt-12 lg:-mt-16 grid overflow-hidden rounded-xl bg-paper shadow-[var(--shadow-card)] divide-y divide-line md:grid-cols-3 md:divide-y-0 md:divide-x">
+          <a class="group flex items-center gap-4 p-4 min-h-[72px] transition-colors hover:bg-sand md:flex-col md:items-start md:gap-3 md:p-6 lg:flex-row lg:items-center lg:gap-4" href="contacto.html#horario">
+            <span class="grid size-11 flex-none place-items-center rounded-full bg-sand text-brass-text">
+              <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
+            </span>
+            <span class="min-w-0 flex-1">
+              <span class="block text-sm text-muted">Horario de hoy</span>
+              <span class="block font-semibold" data-today-range>12:00 m. – 11:30 p. m.</span>
+            </span>
+            <svg class="icon text-muted transition-transform group-hover:translate-x-1 md:hidden lg:block" viewBox="0 0 24 24" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg>
+          </a>
+          <a class="group flex items-center gap-4 p-4 min-h-[72px] transition-colors hover:bg-sand md:flex-col md:items-start md:gap-3 md:p-6 lg:flex-row lg:items-center lg:gap-4" href="https://www.google.com/maps/search/?api=1&amp;query=Calle%20Par%C3%ADs%2C%20Las%20Mercedes%2C%20Caracas%2C%20Venezuela" target="_blank" rel="noopener">
+            <span class="grid size-11 flex-none place-items-center rounded-full bg-sand text-brass-text">
+              <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 10c0 5-5.5 10.2-7.4 11.8a1 1 0 0 1-1.2 0C9.5 20.2 4 15 4 10a8 8 0 0 1 16 0"/><circle cx="12" cy="10" r="3"/></svg>
+            </span>
+            <span class="min-w-0 flex-1">
+              <span class="block text-sm text-muted">Cómo llegar</span>
+              <span class="block font-semibold">Calle París, Las Mercedes</span>
+            </span>
+            <svg class="icon text-muted transition-transform group-hover:translate-x-1 md:hidden lg:block" viewBox="0 0 24 24" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg>
+          </a>
+          <a class="group flex items-center gap-4 p-4 min-h-[72px] transition-colors hover:bg-sand md:flex-col md:items-start md:gap-3 md:p-6 lg:flex-row lg:items-center lg:gap-4" href="https://wa.me/584120000000?text=Hola%2C%20quiero%20reservar%20una%20mesa%20en%20Fog%C3%B3n." target="_blank" rel="noopener">
+            <span class="grid size-11 flex-none place-items-center rounded-full bg-sand text-brass-text">
+              <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/><path d="M9 9.5c0 3 2.5 5.5 5.5 5.5l1.2-1.2-1.8-1-1 .8a4 4 0 0 1-2.5-2.5l.8-1-1-1.8Z"/></svg>
+            </span>
+            <span class="min-w-0 flex-1">
+              <span class="block text-sm text-muted">Reservas por WhatsApp</span>
+              <span class="block font-semibold tabular-nums">+58 412 000 0000</span>
+            </span>
+            <svg class="icon text-muted transition-transform group-hover:translate-x-1 md:hidden lg:block" viewBox="0 0 24 24" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================
+         3. PLATOS FIRMA — antes de 1,5 pantallas (regla de scroll).
+         Carrusel manual con indicador en móvil; cuadrícula en escritorio.
+         ========================================================= -->
+    <section class="section" aria-labelledby="signature-title" data-zone="signature">
+      <div class="wrap">
+        <div class="flex items-end justify-between gap-6">
+          <div>
+            <p class="eyebrow reveal">De nuestra cocina</p>
+            <h2 id="signature-title" class="text-h2 mt-2 reveal" style="--i:1">Platos firma</h2>
+          </div>
+          <a class="link-arrow hidden md:inline-flex" href="menu.html">
+            <span>Ver la carta completa</span>
+            <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+          </a>
+        </div>
+        <div id="signature-list" class="h-scroll mt-8" data-carousel>
+          <!-- Skeletons con la proporción final mientras se pinta (evita CLS). -->
+          <div class="skeleton aspect-[4/5]"></div>
+          <div class="skeleton aspect-[4/5]"></div>
+        </div>
+        <div class="dots" data-dots="signature-list"></div>
+        <a class="link-arrow mt-2 md:hidden" href="menu.html">
+          <span>Ver la carta completa</span>
+          <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+        </a>
+      </div>
+    </section>
+
+    <!-- =========================================================
+         4. NUESTRA COCINA — introducción breve al restaurante.
+         ========================================================= -->
+    <section class="section bg-sand" aria-labelledby="about-title">
+      <div class="wrap grid items-center gap-12 lg:grid-cols-12 lg:gap-8">
+        <div class="relative lg:col-span-6">
+          <div class="reveal-photo aspect-[4/3] overflow-hidden rounded-xl lg:aspect-[5/6]" data-photo="kitchen"></div>
+          <!-- Tarjeta que rompe la cuadrícula: se monta sobre la foto. -->
+          <div class="reveal relative -mt-10 ml-6 max-w-[17rem] rounded-xl bg-paper p-5 shadow-[var(--shadow-lift)] md:ml-10 lg:absolute lg:-bottom-8 lg:-right-10 lg:mt-0 lg:ml-0" style="--i:2">
+            <p class="font-display text-xl italic leading-snug">“La leña no se apura: te enseña a esperar el punto exacto.”</p>
+            <p class="mt-2 text-sm text-muted">Valentina Ríos, chef fundadora</p>
+          </div>
+        </div>
+        <div class="lg:col-span-5 lg:col-start-8">
+          <p class="eyebrow reveal">Nuestra cocina</p>
+          <h2 id="about-title" class="text-h2 mt-2 reveal" style="--i:1">El fuego marca el ritmo</h2>
+          <p class="mt-5 text-muted measure reveal" style="--i:2">
+            Abrimos <em class="font-display not-italic text-ink">en 2012</em> con doce mesas y un fogón de leña. Hoy seguimos cocinando igual: despacio, con brasas de guayabo y con recetas venezolanas que conocemos de toda la vida.
+          </p>
+          <p class="mt-4 text-muted measure reveal" style="--i:3">
+            Trabajamos con productores de Galipán, la costa y los Andes, y cultivamos parte de nuestras hierbas en un huerto propio. Cada plato cambia un poco con la temporada.
+          </p>
+          <a class="link-arrow mt-6 reveal" style="--i:4" href="nosotros.html">
+            <span>Conoce nuestra historia</span>
+            <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================
+         5. EXPLORA LA CARTA — accesos directos a categorías.
+         ========================================================= -->
+    <section class="section" aria-labelledby="explore-title" data-zone="categories">
+      <div class="wrap">
+        <div class="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
+          <div>
+            <p class="eyebrow reveal">La carta</p>
+            <h2 id="explore-title" class="text-h2 mt-2 reveal" style="--i:1">Explora la carta</h2>
+          </div>
+          <p class="text-muted measure md:max-w-sm md:text-right reveal" style="--i:2">30 platos con precio visible y etiquetas de dieta en cada uno. Precios en USD, IVA incluido.</p>
+        </div>
+        <div id="category-tiles" class="mt-8 grid grid-cols-2 gap-4 md:gap-6 lg:grid-cols-4 lg:gap-8"></div>
+      </div>
+    </section>
+
+    <!-- =========================================================
+         6. AMBIENTE — galería manual con visor (sin autoplay).
+         ========================================================= -->
+    <section class="section bg-sand" aria-labelledby="ambience-title" data-zone="gallery">
+      <div class="wrap">
+        <p class="eyebrow reveal">El lugar</p>
+        <h2 id="ambience-title" class="text-h2 mt-2 reveal" style="--i:1">Un salón cálido, íntimo y sin prisas</h2>
+        <ul class="mt-8 grid grid-cols-2 gap-3 md:gap-4 lg:h-[560px] lg:grid-cols-4 lg:grid-rows-2" data-gallery="ambiente" data-gallery-layout="mosaic" role="list"></ul>
+      </div>
+    </section>
+
+    <!-- =========================================================
+         7. LO QUE DICEN — reseñas y valoración de Google.
+         ========================================================= -->
+    <section class="section" aria-labelledby="reviews-title" data-zone="reviews">
+      <div class="wrap">
+        <div class="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
+          <div>
+            <p class="eyebrow reveal">Lo que dicen</p>
+            <h2 id="reviews-title" class="text-h2 mt-2 reveal" style="--i:1">Nuestros comensales</h2>
+          </div>
+          <a class="reveal inline-flex items-center gap-4 self-start rounded-xl border border-line px-5 py-3 transition-colors hover:bg-sand md:self-auto" style="--i:2" href="https://www.google.com/maps/search/?api=1&amp;query=Fog%C3%B3n%20cocina%20de%20le%C3%B1a%20Las%20Mercedes%20Caracas" target="_blank" rel="noopener">
+            <span class="font-display text-4xl font-medium">4,8</span>
+            <span>
+              <span data-rating-stars></span>
+              <span class="block text-sm text-muted">1.200 reseñas en Google (ejemplo)</span>
+            </span>
+          </a>
+        </div>
+        <ul id="reviews-list" class="mt-8 grid gap-4 md:grid-cols-3 md:gap-6" role="list"></ul>
+      </div>
+    </section>
+
+    <!-- =========================================================
+         8. CIERRE DE CONTACTO — WhatsApp, Llamar y Cómo llegar + mapa.
+         ========================================================= -->
+    <section class="ph--ember relative overflow-hidden text-cream" style="background: var(--ph-bg)" aria-labelledby="visit-title" data-zone="contact-cta">
+      <div class="wrap section grid items-center gap-12 lg:grid-cols-12 lg:gap-8">
+        <div class="lg:col-span-6">
+          <p class="eyebrow eyebrow--on-photo reveal">Te esperamos</p>
+          <h2 id="visit-title" class="text-h1 mt-2 reveal" style="--i:1">¿Te esperamos esta noche?</h2>
+          <div class="mt-6 reveal" style="--i:2" data-status data-status-pill></div>
+          <p class="mt-5 text-cream/85 reveal" style="--i:3">Calle París, Las Mercedes, Caracas · A dos cuadras de la plaza.</p>
+          <div class="mt-8 grid gap-3 sm:grid-cols-3 reveal" style="--i:4">
+            <a class="btn btn-primary" href="https://wa.me/584120000000?text=Hola%2C%20quiero%20reservar%20una%20mesa%20en%20Fog%C3%B3n." target="_blank" rel="noopener">
+              <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/><path d="M9 9.5c0 3 2.5 5.5 5.5 5.5l1.2-1.2-1.8-1-1 .8a4 4 0 0 1-2.5-2.5l.8-1-1-1.8Z"/></svg>
+              WhatsApp
+            </a>
+            <a class="btn btn-on-photo" href="tel:+584120000000">
+              <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2Z"/></svg>
+              Llamar
+            </a>
+            <a class="btn btn-on-photo" href="https://www.google.com/maps/search/?api=1&amp;query=Calle%20Par%C3%ADs%2C%20Las%20Mercedes%2C%20Caracas%2C%20Venezuela" target="_blank" rel="noopener">
+              <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 11 22 2l-9 19-2-8-8-2Z"/></svg>
+              Cómo llegar
+            </a>
+          </div>
+        </div>
+        <div class="lg:col-span-5 lg:col-start-8">
+          <a class="group block overflow-hidden rounded-xl reveal" style="--i:2" href="contacto.html#ubicacion" aria-label="Ver ubicación y opciones de mapas">
+            <div class="aspect-[4/3] transition-transform duration-[600ms] group-hover:scale-[1.02]" data-photo="map"></div>
+          </a>
+          <p class="mt-3 text-sm text-cream/80">Abre la ubicación en Google Maps, Waze o Apple Maps desde <a class="underline underline-offset-4" href="contacto.html#ubicacion">Contacto</a>.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Pie, barra inferior, diálogos y scripts de la página. -->
+  <script>Fogon.layout.renderBottom(document.currentScript);</script>
+  <script src="assets/js/dishes.js"></script>
+  <script src="assets/js/home.js"></script>
+  <script src="assets/js/ui.js"></script>
+</body>
+</html>
