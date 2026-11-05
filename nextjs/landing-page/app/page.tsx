@@ -1,5 +1,8 @@
 import Image from "next/image";
 import Button from "./(components)/atom/Button";
+import SearchBar from "./(components)/molecule/SearchBar";
+import Section from "./(components)/atom/Section";
+import SearchBarWithButton from "./(components)/molecule/SearchBarWithButton";
 
 export default function Home() {
   return (
@@ -65,6 +68,11 @@ export default function Home() {
             Documentation
           </a>
         </div>
+        <SearchBar />
+        <Section>
+          <p>Contenido de la sección</p>
+        </Section>
+        <SearchBarWithButton />
       </main>
     </div>
   );
