@@ -1,5 +1,5 @@
 "use client"
-import Api from "../../(components)/organism/Api"
+import Api from "../../_components/organism/Api"
 
 export default function Characters(){
   return(

@@ -1,10 +1,14 @@
-import Button from "./../atom/Button";
+import Button from "../atom/Button";
 
 export default function NavBar() {
   return (
-    <nav className="bg-gray-800 p-4">
+    <nav className="p-4">
       <p className="text-white text-lg font-bold">Mi sitio web</p>
-      <Button text="Ir a contacto" styles="bg-green-500 hover:bg-green-600" route="/contacto" />
+      <Button
+        text="Ir a contacto"
+        styles="bg-green-500 hover:bg-green-600"
+        route="/contacto"
+      />
     </nav>
   );
 }
