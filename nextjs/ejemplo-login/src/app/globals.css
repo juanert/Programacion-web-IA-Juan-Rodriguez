@@ -1,0 +1,82 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Segoe UI", system-ui, sans-serif;
+  --color-canvas: #eef2ed;
+  --color-surface: #f9faf6;
+  --color-input: #f4f7f2;
+  --color-ink: #172e29;
+  --color-muted: #4c645b;
+  --color-placeholder: #657b71;
+  --color-accent: #255b4d;
+  --color-accent-hover: #1b473c;
+  --color-on-accent: #f8fbf5;
+  --color-soft-accent: #e0ede3;
+  --color-line: #cbd8d0;
+  --color-error: #823b38;
+  --color-error-bg: #f5e7e4;
+}
+
+:root {
+  color-scheme: light;
+}
+
+body {
+  background: radial-gradient(ellipse at 22% 0%, #e6eee3, transparent 54%), var(--color-canvas);
+}
+
+.lock-illustration {
+  position: relative;
+  isolation: isolate;
+  min-height: 15rem;
+  place-items: center;
+  background-image: radial-gradient(#255b4d2b 1px, transparent 1px);
+  background-size: 15px 15px;
+  border-radius: 2rem;
+}
+
+.lock-illustration::before {
+  position: absolute;
+  z-index: -1;
+  width: 11.25rem;
+  aspect-ratio: 1;
+  border: 1px solid #255b4d38;
+  border-radius: 50%;
+  background-color: var(--color-soft-accent);
+  content: "";
+}
+
+.lock-mark {
+  position: relative;
+  display: block;
+  box-sizing: border-box;
+  width: 0.88em;
+  height: 0.68em;
+  margin-top: 0.3em;
+  border: max(1.5px, 0.058em) solid currentColor;
+  border-radius: 0.17em;
+}
+
+.lock-mark::before {
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  width: 0.51em;
+  height: 0.42em;
+  transform: translateX(-50%);
+  border: max(1.5px, 0.058em) solid currentColor;
+  border-bottom: 0;
+  border-radius: 0.3em 0.3em 0 0;
+  content: "";
+}
+
+.lock-mark::after {
+  position: absolute;
+  inset: 50% auto auto 50%;
+  width: 0.11em;
+  height: 0.19em;
+  transform: translate(-50%, -50%);
+  border-radius: 1rem;
+  background-color: currentColor;
+  content: "";
+}
